@@ -39,3 +39,4 @@ class LoginController:
     def _minimize(self):
         self.view.showMinimized()
         self.view.setWindowOpacity(1.0)
+
