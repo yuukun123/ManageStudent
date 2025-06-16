@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/">
+    <file>../UI/icons/close-outline.svg</file>
+    <file>../UI/icons/remove-outline.svg</file>
+    <file>../UI/fonts/rockwell-extra-bold.otf</file>
+  </qresource>
+</RCC>
