@@ -1,29 +1,30 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import Qt, QPropertyAnimation
-from UI.forms.login_ui import Ui_MainWindow
+from PyQt5 import uic
+from PyQt5.QtCore import Qt
 from src.controllers.LoginController import LoginController
+from src.views.moveable_window import MoveableWindow
+from src.controllers.buttonController import buttonController
 
-class LoginWindow(QtWidgets.QMainWindow):
+class LoginWindow(MoveableWindow):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        uic.loadUi("../UI/forms/login.ui", self)
+
+        # Thêm frameless + trong suốt
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
 
         self.setWindowOpacity(1.0)
 
-        self.controller = LoginController(self)
-        # Gắn nút
-        self.ui.loginBtn.clicked.connect(lambda: self.controller.handle_login(
-            self.ui.userName.text(), self.ui.password.text()
-        ))
-        self.ui.closeBtn.clicked.connect(self.controller.handle_close)
-        self.ui.hiddenBtn.clicked.connect(self.controller.handle_hidden)
+        # Tạo controller, truyền self vào
+        self.buttonController = buttonController(self)
 
-    def showEvent(self, event):
-        super().showEvent(event)
-        self.setWindowOpacity(0.0)
-        self.fade_in = QPropertyAnimation(self, b"windowOpacity")
-        self.fade_in.setDuration(100)
-        self.fade_in.setStartValue(0.0)
-        self.fade_in.setEndValue(1.0)
-        self.fade_in.start()
+        # Tạo controller, truyền self vào
+        self.controller = LoginController(self)
+
+        # Gắn nút
+        self.loginBtn.clicked.connect(lambda: self.controller.handle_login(
+            self.userName.text(), self.password.text()
+        ))
+        self.closeBtn.clicked.connect(self.buttonController.handle_close)
+        self.hiddenBtn.clicked.connect(self.buttonController.handle_hidden)
+

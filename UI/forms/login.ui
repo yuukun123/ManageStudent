@@ -68,9 +68,9 @@ QGroupBox {
     <widget class="QLineEdit" name="password">
      <property name="geometry">
       <rect>
-       <x>165</x>
-       <y>215</y>
-       <width>400</width>
+       <x>140</x>
+       <y>210</y>
+       <width>450</width>
        <height>41</height>
       </rect>
      </property>
@@ -83,7 +83,7 @@ QGroupBox {
 	border-radius:6px;
 
 	color: black;  /* màu placeholder */
-    font-style: italic;
+	font-size: 16px;
 }
 
 #password::hover {
@@ -139,9 +139,9 @@ QGroupBox {
      </property>
      <property name="geometry">
       <rect>
-       <x>165</x>
+       <x>140</x>
        <y>140</y>
-       <width>400</width>
+       <width>450</width>
        <height>41</height>
       </rect>
      </property>
@@ -154,7 +154,7 @@ QGroupBox {
 	border-radius:6px;
 
 	color: black;  /* màu placeholder */
-    font-style: italic;
+    font-size: 16px;
 }
 
 #userName::hover {
@@ -178,7 +178,7 @@ QGroupBox {
      <property name="geometry">
       <rect>
        <x>685</x>
-       <y>5</y>
+       <y>10</y>
        <width>30</width>
        <height>30</height>
       </rect>
@@ -258,7 +258,7 @@ QGroupBox {
      <property name="geometry">
       <rect>
        <x>650</x>
-       <y>5</y>
+       <y>10</y>
        <width>30</width>
        <height>30</height>
       </rect>
