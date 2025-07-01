@@ -1,13 +1,16 @@
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMainWindow
+
 from src.controllers.LoginController import LoginController
 from src.views.moveable_window import MoveableWindow
 from src.controllers.buttonController import buttonController
 
-class LoginWindow(MoveableWindow):
+class LoginWindow(QMainWindow , MoveableWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("../UI/forms/login.ui", self)
+        MoveableWindow.__init__(self)
 
         # Thêm frameless + trong suốt
         self.setWindowFlags(Qt.FramelessWindowHint)

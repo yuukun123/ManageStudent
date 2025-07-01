@@ -1,7 +1,7 @@
 import sqlite3
 import hashlib
 
-DB_PATH = "data/manage_account.db"
+DB_PATH = "data/student_management.db"
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -41,7 +41,7 @@ def check_login(username, password):
         return False
 
 def get_all_users():
-    conn = sqlite3.connect('data/manage_account.db')
+    conn = sqlite3.connect('data/student_management.db')
     cursor = conn.cursor()
     cursor.execute("SELECT id, username FROM users")
     users = cursor.fetchall()

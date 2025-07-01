@@ -2,6 +2,12 @@
   <qresource prefix="/">
     <file>../UI/icons/close-outline.svg</file>
     <file>../UI/icons/remove-outline.svg</file>
+    <file>../UI/icons/stop-outline.svg</file>
+    <file>../UI/icons/speedometer.svg</file>
+    <file>../UI/icons/copy.svg</file>
+    <file>../UI/icons/clipboard.svg</file>
+    <file>../UI/icons/chevron-down.svg</file>
+    <file>../UI/icons/chevron-up.svg</file>
     <file>../UI/fonts/rockwell-extra-bold.otf</file>
   </qresource>
 </RCC>

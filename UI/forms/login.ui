@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>915</width>
-    <height>446</height>
+    <width>836</width>
+    <height>424</height>
    </rect>
   </property>
   <property name="font">
@@ -71,7 +71,7 @@ QGroupBox {
        <x>140</x>
        <y>210</y>
        <width>450</width>
-       <height>41</height>
+       <height>45</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -79,11 +79,11 @@ QGroupBox {
     background-color: rgba(255, 255, 255, 255); /* màu trắng, không trong suốt */
     color: black;
     border: 2px solid rgb(129, 129, 129);
-	padding: 4px 5px;
+	padding: 6px 8px;
 	border-radius:6px;
 
 	color: black;  /* màu placeholder */
-	font-size: 16px;
+	font-size: 19px;
 }
 
 #password::hover {
@@ -142,7 +142,7 @@ QGroupBox {
        <x>140</x>
        <y>140</y>
        <width>450</width>
-       <height>41</height>
+       <height>45</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -150,11 +150,11 @@ QGroupBox {
     background-color: rgba(255, 255, 255, 255); /* màu trắng, không trong suốt */
     color: black;
     border: 2px solid rgb(129, 129, 129);
-	padding: 4px 5px;
+	padding: 6px 8px;
 	border-radius:6px;
 
 	color: black;  /* màu placeholder */
-    font-size: 16px;
+	font-size: 19px;
 }
 
 #userName::hover {

@@ -15,10 +15,10 @@ class LoginController:
             self.on_login_failed()
 
     def on_login_success(self, username):
-        from src.windows.window_manager import open_dashboard_window
+        from src.windows.window_manager import open_main_window
         QMessageBox.information(self.view, "Login", "✅ Đăng nhập thành công!")
         # TODO: Chuyển sang màn hình chính
-        open_dashboard_window(username)
+        open_main_window(username)
 
         # Đóng cửa sổ login
         self.view.close()

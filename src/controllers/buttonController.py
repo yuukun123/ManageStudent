@@ -4,6 +4,12 @@ class buttonController:
     def __init__(self, view):
         self.view = view
 
+    def handle_cancel(self):
+        self.view.reject()
+
+    def handle_ok(self):
+        self.view.close()
+
     def handle_close(self):
         self.view.close()
 
@@ -28,3 +34,5 @@ class buttonController:
             self.view.showMaximized()             # Phóng to full màn hình
             self.view.maximizeBtn.hide()          # Ẩn nút maximize
             self.view.restoreBtn.show()           # Hiện nút restore
+
+

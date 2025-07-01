@@ -1,0 +1,1928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>658</width>
+    <height>709</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="styleSheet">
+      <string notr="true">#widget{
+background: qlineargradient(
+        x1:0, y1:0,
+		x2:1, y2:1,
+        stop:0 #ade8f4, stop:1 #e4c1f9
+    );
+border: 1px solid rgb(147, 147, 147);
+border-radius: 10px;
+}</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_15">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>11</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="widget_5" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 0px solid rgb(0, 0, 0);</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="labelForm">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>22</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#labelForm{
+color: #0077b6
+}</string>
+           </property>
+           <property name="text">
+            <string>Add New Student</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_2" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>500</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>500</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_18">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QWidget" name="widget_4" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: 0px solid rgb(0, 0, 0);</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QToolButton" name="personal">
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#personal{
+font-size: 22px;
+	
+}
+
+#personal:hover{	
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#personal:pressed{	
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}
+
+#personal:checked{ 
+	color: rgb(255, 255, 255);
+	background-color: rgb(32, 43, 209);
+}
+
+#personal:hover:checked{	
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#personal:pressed:checked{	
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Personal Info</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="academic">
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#academic{
+font-size: 22px;
+
+}
+
+#academic:hover{	
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#academic:pressed{	
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}
+
+#academic:checked{ 
+	color: rgb(255, 255, 255);
+	background-color: rgb(32, 43, 209);
+}
+
+#academic:hover:checked{	
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#academic:pressed:checked{	
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Academic Info</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="results">
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#results{
+font-size: 22px;
+
+}
+
+#results:hover{	
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#results:pressed{	
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}
+
+#results:checked{ 
+	color: rgb(255, 255, 255);
+	background-color: rgb(32, 43, 209);
+}
+
+#results:hover:checked{	
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#results:pressed:checked{	
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Academic Results</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QStackedWidget" name="stackedWidget">
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <widget class="QWidget" name="information">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="spacing">
+              <number>7</number>
+             </property>
+             <property name="topMargin">
+              <number>15</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="frame">
+               <property name="mouseTracking">
+                <bool>true</bool>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="2" column="1">
+                 <widget class="QGroupBox" name="groupBox_2">
+                  <property name="styleSheet">
+                   <string notr="true">border:none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_3">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_5">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Date Of Birth</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDateEdit" name="inputStdDate">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>9</pointsize>
+                       <weight>9</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="mouseTracking">
+                      <bool>true</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdDate {
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+	font: 75 9pt &quot;MS Shell Dlg 2&quot;;
+	background-color: white;
+}
+
+/* Mặc định chữ đen */
+#inputStdDate QLineEdit {
+	color: rgb(0, 0, 0);
+	background: transparent;
+	border: none;
+}
+
+/* Khi QDateEdit hover thì đổi chữ thành trắng */
+#inputStdDate:hover QLineEdit {
+	color: rgb(255, 255, 255);
+}
+
+/* Khi QDateEdit được focus hoặc click */
+#inputStdDate:hover QLineEdit,
+#inputStdDate:pressed QLineEdit {
+	color: rgb(255, 255, 255);
+}
+
+/* Đổi nền khi hover/focus */
+#inputStdDate:hover,
+
+#inputStdDate:pressed {
+	background-color: rgb(167, 167, 167);
+}
+
+/* Nút dropdown */
+#inputStdDate::drop-down {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 35px;
+    border: none;
+    background-color: rgb(94, 173, 161) ;
+    image: url(:/UI/icons/chevron-down.svg);
+}
+</string>
+                     </property>
+                     <property name="calendarPopup">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QGroupBox" name="groupBox_5">
+                  <property name="styleSheet">
+                   <string notr="true">border:none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_13">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_4">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Student Name</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputStdName">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdName{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="inputMask">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Full name</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QGroupBox" name="groupBox">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item alignment="Qt::AlignLeft">
+                    <widget class="QLabel" name="label">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Student ID</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputStdID">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdID{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="inputMask">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>student id</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QGroupBox" name="groupBox_3">
+                  <property name="styleSheet">
+                   <string notr="true">border:none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_4">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Gender</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="inputStdSex">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdSex{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+}
+
+#inputStdSex:hover{
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#inputStdSex::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 25px;
+    height: 25px;
+}
+
+#inputStdSex::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 7px;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Choose gender</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Male</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Female</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QGroupBox" name="groupBox_4">
+                  <property name="styleSheet">
+                   <string notr="true">border: none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_10">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_6">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Email</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputStdEmail">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdEmail{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="inputMask">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Email</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QGroupBox" name="groupBox_21">
+                  <property name="styleSheet">
+                   <string notr="true">border: none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_12">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_7">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Phone number</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputStdPhone">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdPhone{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="inputMask">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Address</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QGroupBox" name="groupBox_22">
+                  <property name="styleSheet">
+                   <string notr="true">border: none;</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_14">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_8">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Address</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputStdAddress">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputStdAddress{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="inputMask">
+                      <string/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Address</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="Academic">
+            <layout class="QVBoxLayout" name="verticalLayout_28">
+             <property name="topMargin">
+              <number>15</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="frame_2">
+               <property name="mouseTracking">
+                <bool>true</bool>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QGroupBox" name="groupBox_6">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_19">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_9">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Major</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="inputMajor">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputMajor{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+}
+
+#inputMajor:hover{
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#inputMajor::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 25px;
+    height: 25px;
+}
+
+#inputMajor::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 7px;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Choose major</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QGroupBox" name="groupBox_7">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_24">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_10">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Class</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="inputClassroom">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputClassroom{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+}
+
+#inputClassroom:hover{
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#inputClassroom::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 25px;
+    height: 25px;
+}
+
+#inputClassroom::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 7px;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Choose class</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QGroupBox" name="groupBox_8">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_17">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_16">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Academic year</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="inputAcademicYear">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputAcademicYear{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+}
+
+#inputAcademicYear:hover{
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#inputAcademicYear::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 25px;
+    height: 25px;
+}
+
+#inputAcademicYear::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 7px;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Choose academic year</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QGroupBox" name="groupBox_9">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_25">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_11">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Enrollment year</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="inputEnrollmentYear">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputEnrollmentYear{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+}
+
+#inputEnrollmentYear:hover{
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#inputEnrollmentYear::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 25px;
+    height: 25px;
+}
+
+#inputEnrollmentYear::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 7px;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Choose enrollment year</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QGroupBox" name="groupBox_10">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_17">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>semester</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="inputSemester">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>MS Shell Dlg 2</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputSemester{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148);
+}
+
+#inputSemester:hover{
+	background-color: rgb(161, 161, 161);
+	color: rgb(255, 255, 255);
+}
+
+#inputSemester::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 25px;
+    height: 25px;
+}
+
+#inputSemester::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 7px;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Choose semester</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="AcademicResult">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QFrame" name="frame_3">
+               <property name="mouseTracking">
+                <bool>true</bool>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_3">
+                <item row="0" column="0">
+                 <widget class="QGroupBox" name="groupBox_11">
+                  <property name="styleSheet">
+                   <string notr="true">#inputGPA
+{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                  </property>
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_20">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_12">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>GPA</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputGPA">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="placeholderText">
+                      <string>GPA</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QGroupBox" name="groupBox_12">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_26">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_13">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Accumulated credits</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputAccumulatedCredits">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputAccumulatedCredits{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Accumulated Credits</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QGroupBox" name="groupBox_13">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_21">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_18">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Attendace rate</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputAttendaceYear">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputAttendaceYear{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Attendace Year</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QGroupBox" name="groupBox_14">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_27">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_14">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Scholarship info</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="inputScholarshipInfo">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>45</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#inputScholarshipInfo{
+	padding: 0 8px;
+	border: 1px solid rgb(148, 148, 148)
+}
+</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Scholarship Info</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QGroupBox" name="groupBox_15">
+                  <property name="title">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QGroupBox" name="groupBox_16">
+                  <property name="title">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_7" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 0px solid rgb(0, 0, 0);</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item alignment="Qt::AlignRight">
+          <widget class="QFrame" name="frame_9">
+           <property name="minimumSize">
+            <size>
+             <width>135</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QPushButton" name="okBtn">
+              <property name="minimumSize">
+               <size>
+                <width>130</width>
+                <height>36</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#okBtn{
+font-size: 22px;
+border: 1px solid rgb(0, 0, 0);
+background-color: #57cc99;
+color: rgb(255, 255, 255);
+border-radius: 10px
+}
+
+#okBtn:hover{
+	background-color: rgb(147, 147, 147);
+}</string>
+              </property>
+              <property name="text">
+               <string>Ok</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/check.svg</normaloff>../icons/check.svg</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignLeft">
+          <widget class="QFrame" name="frame_10">
+           <property name="minimumSize">
+            <size>
+             <width>135</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_16">
+            <item>
+             <widget class="QPushButton" name="cancelBtn">
+              <property name="minimumSize">
+               <size>
+                <width>130</width>
+                <height>36</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#cancelBtn{
+font-size: 22px;
+border: 1px solid rgb(0, 0, 0);
+background-color: #dd2d4a;
+color: rgb(255, 255, 255);
+border-radius: 10px
+}
+
+#cancelBtn:hover{
+	background-color: rgb(147, 147, 147);
+}</string>
+              </property>
+              <property name="text">
+               <string>Cancel</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/close-outline.svg</normaloff>../icons/close-outline.svg</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

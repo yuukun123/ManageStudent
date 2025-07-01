@@ -1,6 +1,8 @@
 from src.views.login_view import LoginWindow
-from src.views.dashboard_view import DashboardWindow
+from src.views.main_view import MainWindow
+from src.views.addChar_view import AddCharWindow
 from src.controllers.LoginController import LoginController
+from src.views.student.student_form_view import StudentForm
 
 def open_login_window():
     window = LoginWindow()
@@ -9,7 +11,13 @@ def open_login_window():
     window.show()
     return window
 
-def open_dashboard_window(username):
-    window = DashboardWindow(username)
+def open_main_window(username):
+    window = MainWindow(username)
     window.show()
     return window
+
+def open_addChar_window():
+    window = AddCharWindow()
+    window.show()
+    return window
+

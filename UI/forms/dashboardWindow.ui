@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1413</width>
-    <height>803</height>
+    <width>1414</width>
+    <height>873</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,46 +25,34 @@
       </property>
       <property name="styleSheet">
        <string notr="true">#appWindow{
-	border: 1px solid rgb(143, 143, 143);
+	border: 0px solid rgb(143, 143, 143);
 	border-radius: 14px;
 	background-color:rgb(255, 255, 255)
 }</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="spacing">
-        <number>0</number>
-       </property>
+      <layout class="QGridLayout" name="gridLayout_2">
        <property name="leftMargin">
-        <number>15</number>
+        <number>0</number>
        </property>
        <property name="topMargin">
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>15</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
-        <number>15</number>
+        <number>0</number>
        </property>
-       <item alignment="Qt::AlignRight">
-        <widget class="QFrame" name="maximize">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>0</height>
-          </size>
-         </property>
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QFrame" name="frame_2">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>45</height>
+           <height>56</height>
           </size>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
          </property>
          <property name="styleSheet">
           <string notr="true"/>
@@ -75,23 +63,146 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
           <property name="leftMargin">
-           <number>11</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
-           <number>11</number>
+           <number>10</number>
           </property>
-          <item>
-           <widget class="QPushButton" name="hiddenBtn">
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item alignment="Qt::AlignLeft">
+           <widget class="QFrame" name="frame_3">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <property name="leftMargin">
+              <number>11</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="maximumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+border-radius: 2px;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../icons/MS.png</normaloff>../icons/MS.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="shortcut">
+                <string/>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="font">
+                <font>
+                 <pointsize>-1</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px;</string>
+               </property>
+               <property name="text">
+                <string>Manager Student</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignRight">
+           <widget class="QFrame" name="frame">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>30</width>
-              <height>30</height>
+              <width>90</width>
+              <height>0</height>
              </size>
             </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
             <property name="styleSheet">
-             <string notr="true">#hiddenBtn{
+             <string notr="true"/>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>13</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="hiddenBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#hiddenBtn{
 	border-radius:15px;
 	border:none;
 	background-color:rgb(212, 212, 212)
@@ -103,38 +214,38 @@
 
 
 </string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>../icons/remove-outline.svg</normaloff>../icons/remove-outline.svg</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>25</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="restoreBtn">
-            <property name="minimumSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#restoreBtn{
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../icons/remove-outline.svg</normaloff>../icons/remove-outline.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="restoreBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#restoreBtn{
 	border-radius:15px;
 	border:none;
 	background-color:rgb(212, 212, 212)
@@ -146,38 +257,44 @@
 
 
 </string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>../icons/copy-outline.svg</normaloff>../icons/copy-outline.svg</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="autoRepeat">
-             <bool>false</bool>
-            </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="maximizeBtn">
-            <property name="minimumSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#maximizeBtn{
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../icons/copy.svg</normaloff>../icons/copy.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>15</width>
+                 <height>15</height>
+                </size>
+               </property>
+               <property name="shortcut">
+                <string/>
+               </property>
+               <property name="autoRepeat">
+                <bool>false</bool>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="maximizeBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#maximizeBtn{
 	border-radius:15px;
 	border:none;
 	background-color:rgb(212, 212, 212)
@@ -189,26 +306,26 @@
 
 
 </string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>../icons/stop-outline.svg</normaloff>../icons/stop-outline.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="closeBtn">
-            <property name="minimumSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#closeBtn{
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../icons/stop-outline.svg</normaloff>../icons/stop-outline.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="closeBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#closeBtn{
 	border-radius:15px;
 	border:none;
 	background-color:rgb(212, 212, 212)
@@ -220,26 +337,29 @@
 
 
 </string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>../icons/close-outline.svg</normaloff>../icons/close-outline.svg</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>24</width>
-              <height>25</height>
-             </size>
-            </property>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../icons/close-outline.svg</normaloff>../icons/close-outline.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>25</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="2" column="0">
         <widget class="QFrame" name="border_none">
          <property name="minimumSize">
           <size>
@@ -270,14 +390,17 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <property name="leftMargin">
-           <number>11</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
-           <number>11</number>
+           <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>11</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -286,7 +409,7 @@
            <widget class="QFrame" name="menu_tab">
             <property name="minimumSize">
              <size>
-              <width>170</width>
+              <width>185</width>
               <height>0</height>
              </size>
             </property>
@@ -295,9 +418,9 @@
             </property>
             <property name="styleSheet">
              <string notr="true">#menu_tab{
-border: 1px solid rgb(0,0,0);
-background-color: rgb(239, 239, 239);
-border-radius: 10px;
+border-right: 1px solid rgb(186, 186, 186);
+background-color: #d6eaf8; 
+border-bottom-left-radius: 10px;
 }</string>
             </property>
             <property name="frameShape">
@@ -307,41 +430,6 @@ border-radius: 10px;
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>MS Shell Dlg 2</family>
-                 <pointsize>-1</pointsize>
-                 <weight>10</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">#label{
-border: none;
-color: rgb(90, 8, 10);
-font: 80 24px &quot;MS Shell Dlg 2&quot;;
-}</string>
-               </property>
-               <property name="text">
-                <string>Manage Student</string>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QWidget" name="widget" native="true">
                <property name="minimumSize">
@@ -368,6 +456,12 @@ border:none;
                 <property name="spacing">
                  <number>0</number>
                 </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
                 <property name="bottomMargin">
                  <number>0</number>
                 </property>
@@ -382,32 +476,59 @@ border:none;
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#dashboard{
-	font-size:17px;
-	border: 1px solid rgb(0,0,0);
+	font-size:15px;
+	border: 0px solid rgb(0,0,0);
 	border-radius: 6px;
 	background-color:rgb(134, 227, 232);
 }
 
 #dashboard::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143) ;
 	color: rgb(255, 255, 255);
-	font-size: 20px;
 }
 
 #dashboard:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
+}
+
+#dashboard:checked{
+    background-color: rgb(70, 77, 204);
+    color: rgb(255, 255, 255)
+}
+
+#dashboard::hover:checked{
+	background-color: rgb(143, 143, 143) ;
+	color: rgb(255, 255, 255);
+}
+
+#dashboard:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
 }</string>
                   </property>
                   <property name="text">
                    <string>Dashboard</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>../icons/speedometer.svg</normaloff>../icons/speedometer.svg</iconset>
+                  </property>
+                  <property name="checkable">
+                   <bool>false</bool>
+                  </property>
+                  <property name="autoDefault">
+                   <bool>false</bool>
+                  </property>
+                  <property name="default">
+                   <bool>false</bool>
                   </property>
                  </widget>
                 </item>
@@ -422,36 +543,61 @@ border:none;
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="mouseTracking">
                    <bool>false</bool>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#studentList{
-	font-size:16px;
-	border: 1px solid rgb(0,0,0);
+	font-size:14px;
+	border: 0px solid rgb(0,0,0);
 	border-radius: 6px;
-	background-color:rgb(134, 227, 232);
+	background-color: rgb(134, 227, 232);
 }
 
 #studentList::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
 }
 
 #studentList:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
 }
+
+#studentList:checked{
+    background-color: rgb(70, 77, 204);  /* màu khi active */
+    color: rgb(255, 255, 255);
+}
+
+#studentList::hover:checked{
+	background-color: rgb(143, 143, 143);
+	color: rgb(255, 255, 255);
+}
+
+#studentList:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}
+
 </string>
                   </property>
                   <property name="text">
                    <string>Student List</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../../resources/resources.qrc">
+                    <normaloff>:/UI/icons/clipboard.svg</normaloff>:/UI/icons/clipboard.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -466,32 +612,51 @@ border:none;
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#scores{
-font-size:17px;
-border: 1px solid rgb(0,0,0);
+font-size:15px;
+border: 0px solid rgb(0,0,0);
 border-radius: 6px;
 background-color:rgb(134, 227, 232);
 }
 
 #scores::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
 }
 
 #scores:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
-}</string>
+}
+
+#scores:checked{
+    background-color: rgb(70, 77, 204);  /* màu khi active */
+    color: rgb(255, 255, 255);
+}
+
+#scores::hover:checked{
+	background-color: rgb(143, 143, 143);
+	color: rgb(255, 255, 255);
+}
+
+#scores:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
+}
+</string>
                   </property>
                   <property name="text">
                    <string>Scores</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>../icons/star.svg</normaloff>../icons/star.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -506,32 +671,56 @@ background-color:rgb(134, 227, 232);
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#classroom{
-font-size:17px;
-border: 1px solid rgb(0,0,0);
+font-size:15px;
+border: 0px solid rgb(0,0,0);
 border-radius: 6px;
 background-color:rgb(134, 227, 232);
 }
 
 #classroom::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
 }
 
 #classroom:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
+}
+
+#classroom:checked{
+    background-color: rgb(70, 77, 204);  /* màu khi active */
+    color: rgb(255, 255, 255);
+}
+
+#classroom::hover:checked{
+	background-color: rgb(143, 143, 143);
+	color: rgb(255, 255, 255);
+}
+
+#classroom:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
 }</string>
                   </property>
                   <property name="text">
                    <string>Classroom</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>../icons/book.svg</normaloff>../icons/book.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -546,32 +735,61 @@ background-color:rgb(134, 227, 232);
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#tulitionFee{
-font-size:16px;
-border: 1px solid rgb(0,0,0);
+font-size:15px;
+border: 0px solid rgb(0,0,0);
 border-radius: 6px;
 background-color:rgb(134, 227, 232);
 }
 
 #tulitionFee::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
+
 }
 
 #tulitionFee:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
+}
+
+#tulitionFee:checked{
+    background-color: rgb(70, 77, 204); /* màu khi active */
+    color: rgb(255, 255, 255);
+}
+
+#tulitionFee::hover:checked{
+	background-color: rgb(143, 143, 143);
+	color: rgb(255, 255, 255);
+
+}
+
+#tulitionFee:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
 }</string>
                   </property>
                   <property name="text">
                    <string>Tuition Fee</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>../icons/dollar-sign.svg</normaloff>../icons/dollar-sign.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="checkable">
+                   <bool>false</bool>
                   </property>
                  </widget>
                 </item>
@@ -586,32 +804,50 @@ background-color:rgb(134, 227, 232);
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#lecturer{
-font-size:17px;
-border: 1px solid rgb(0,0,0);
+font-size:15px;
+border: 0px solid rgb(0,0,0);
 border-radius: 6px;
 background-color:rgb(134, 227, 232);
 }
 
 #lecturer::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143);
 	color: rgb(255, 255, 255);	
-	font-size: 20px;
 }
 
 #lecturer:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);	
-	font-size: 20px;
+}
+
+#lecture:checked{
+    background-color: rgb(70, 77, 204);  /* màu khi active */
+    color: rgb(255, 255, 255);
+}
+
+#lecturer::hover:checked{
+	background-color: rgb(143, 143, 143);
+	color: rgb(255, 255, 255);	
+}
+
+#lecturer:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);	
 }</string>
                   </property>
                   <property name="text">
                    <string>Lecturer</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>../icons/user.svg</normaloff>../icons/user.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -626,32 +862,50 @@ background-color:rgb(134, 227, 232);
                   <property name="font">
                    <font>
                     <pointsize>-1</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#notification{
-font-size:16px;
-border: 1px solid rgb(0,0,0);
+font-size:14px;
+border: 0px solid rgb(0,0,0);
 border-radius: 6px;
 background-color:rgb(134, 227, 232);
 }
 
 #notification::hover{
-	background-color: rgb(70, 77, 204);
+	background-color: rgb(143, 143, 143);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
 }
 
 #notification:pressed{
 	background-color: rgb(7, 170, 7);
 	color: rgb(255, 255, 255);
-	font-size: 20px;
+}
+
+#notification:checked{
+    background-color: rgb(70, 77, 204);  /* màu khi active */
+    color: rgb(255, 255, 255);
+}
+
+#notification::hover:checked{
+	background-color: rgb(143, 143, 143);
+	color: rgb(255, 255, 255);
+}
+
+#notification:pressed:checked{
+	background-color: rgb(7, 170, 7);
+	color: rgb(255, 255, 255);
 }</string>
                   </property>
                   <property name="text">
                    <string>Notification</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>../icons/bell.svg</normaloff>../icons/bell.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -709,286 +963,205 @@ font-size:10px;
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="mainSet">
+           <widget class="QStackedWidget" name="stackedWidget">
             <property name="minimumSize">
              <size>
-              <width>1133</width>
-              <height>720</height>
+              <width>0</width>
+              <height>40</height>
              </size>
             </property>
             <property name="mouseTracking">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
-            <property name="styleSheet">
-             <string notr="true">#mainSet{
-border: 1px solid rgb(0,0,0);
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <property name="iohio]" stdset="0">
+             <string/>
+            </property>
+            <widget class="QWidget" name="dashboard_page">
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="mainSet">
+                <property name="minimumSize">
+                 <size>
+                  <width>1133</width>
+                  <height>710</height>
+                 </size>
+                </property>
+                <property name="mouseTracking">
+                 <bool>true</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#mainSet{
+;
 border-radius: 10px;
 }</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
-             <item>
-              <widget class="QWidget" name="header" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>1100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>150</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">border: 1px solid rgb(0, 0, 0)</string>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_6">
-                <property name="topMargin">
-                 <number>11</number>
                 </property>
-                <property name="bottomMargin">
-                 <number>11</number>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
-                <item>
-                 <widget class="QWidget" name="widget_2" native="true">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>60</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(208, 255, 254);
-border-radius: 10px;
-border: 0.5px solid rgb(198, 198, 198)</string>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout">
-                   <property name="spacing">
-                    <number>8</number>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QWidget" name="header" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>1100</width>
+                     <height>0</height>
+                    </size>
                    </property>
-                   <property name="leftMargin">
-                    <number>11</number>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>145</height>
+                    </size>
                    </property>
-                   <property name="topMargin">
-                    <number>11</number>
+                   <property name="styleSheet">
+                    <string notr="true">border-bottom: 1px solid rgb(0, 0, 0);
+border-radius: 0px;</string>
                    </property>
-                   <property name="rightMargin">
-                    <number>11</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>11</number>
-                   </property>
-                   <item>
-                    <widget class="QLineEdit" name="search">
-                     <property name="minimumSize">
-                      <size>
-                       <width>460</width>
-                       <height>35</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>1100</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">border: 1px solid rgb(0, 0, 0);
-padding:8px  12px;
-background-color: rgb(230, 230, 230);
-font-size:16px;
-</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
-                     <property name="placeholderText">
-                      <string>Search</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="userInfoLabel">
-                     <property name="minimumSize">
-                      <size>
-                       <width>260</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>100</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <pointsize>-1</pointsize>
-                       <weight>75</weight>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="layoutDirection">
-                      <enum>Qt::LeftToRight</enum>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">border:none;
-font-size: 15px;</string>
-                     </property>
-                     <property name="text">
-                      <string>👤 UserName (Online 🟢)</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignCenter</set>
-                     </property>
-                     <property name="wordWrap">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="logoutBtn">
-                     <property name="minimumSize">
-                      <size>
-                       <width>95</width>
-                       <height>35</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>100</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <pointsize>-1</pointsize>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">#logoutBtn{
-border-radius: 8px;
-font-size: 17px;
-background-color: rgb(231, 27, 30);
-color: rgb(255, 255, 255);
+                   <layout class="QVBoxLayout" name="verticalLayout_6">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QWidget" name="widget_3" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>1000</height>
+                       </size>
+                      </property>
+                      <property name="mouseTracking">
+                       <bool>true</bool>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">border:none;</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_3">
+                       <property name="sizeConstraint">
+                        <enum>QLayout::SetDefaultConstraint</enum>
+                       </property>
+                       <property name="leftMargin">
+                        <number>11</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>5</number>
+                       </property>
+                       <item alignment="Qt::AlignLeft">
+                        <widget class="QWidget" name="widget_4" native="true">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">border:none;</string>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_4">
+                          <property name="topMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>11</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>5</number>
+                          </property>
+                          <item>
+                           <widget class="QToolButton" name="addCharBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#addCharBtn{
+	font-size:16px;
 }
 
-#logoutBtn::hover{
-background-color: rgb(59, 167, 59);
+#addCharBtn::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
 }</string>
-                     </property>
-                     <property name="text">
-                      <string>Logout</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QWidget" name="widget_3" native="true">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="mouseTracking">
-                   <bool>true</bool>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">border:none;</string>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_3">
-                   <property name="sizeConstraint">
-                    <enum>QLayout::SetDefaultConstraint</enum>
-                   </property>
-                   <property name="leftMargin">
-                    <number>11</number>
-                   </property>
-                   <property name="topMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>0</number>
-                   </property>
-                   <item>
-                    <widget class="QLabel" name="header_DBD">
-                     <property name="minimumSize">
-                      <size>
-                       <width>400</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>2000</width>
-                       <height>51</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">#header_DBD{	
-	font: 81 18pt &quot;Rockwell Extra Bold&quot;;
-	border:none;
-	padding-left: 5px;
-}</string>
-                     </property>
-                     <property name="text">
-                      <string>Dashboard</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="widget_4" native="true">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>0</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">border:none;</string>
-                     </property>
-                     <layout class="QHBoxLayout" name="horizontalLayout_4">
-                      <property name="bottomMargin">
-                       <number>11</number>
-                      </property>
-                      <item alignment="Qt::AlignTop">
-                       <widget class="QToolButton" name="exportBtn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>100</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>-1</pointsize>
-                          <weight>50</weight>
-                          <bold>false</bold>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">#exportBtn{
+                            </property>
+                            <property name="text">
+                             <string>Add Char</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item alignment="Qt::AlignTop">
+                           <widget class="QToolButton" name="exportBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#exportBtn{
 	font-size:16px;
 	
 }
@@ -998,70 +1171,25 @@ font-size:20px;
 color: rgb(58, 45, 132);
 background-color: rgb(232, 232, 232);
 }</string>
-                        </property>
-                        <property name="text">
-                         <string>Export</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QToolButton" name="pdfBtn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>100</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">#pdfBtn{
-	font-size:16px;
-}
-
-#pdfBtn::hover{
-font-size:20px;
-color: rgb(58, 45, 132);
-background-color: rgb(232, 232, 232);
-}</string>
-                        </property>
-                        <property name="text">
-                         <string>PDF</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QToolButton" name="refreshBtn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>100</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">#refreshBtn{
-	font-size:16px;
-}
-
-#refreshBtn::hover{
-font-size:20px;
-color: rgb(58, 45, 132);
-background-color: rgb(232, 232, 232);
-}</string>
-                        </property>
-                        <property name="text">
-                         <string>Refresh</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QToolButton" name="importBtn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>100</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">#importBtn{
+                            </property>
+                            <property name="text">
+                             <string>Export</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="importBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#importBtn{
 	font-size:16px;
 }
 
@@ -1070,22 +1198,79 @@ font-size:20px;
 color: rgb(58, 45, 132);
 background-color: rgb(232, 232, 232);
 }</string>
-                        </property>
-                        <property name="text">
-                         <string>Import</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QToolButton" name="filterBtn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>100</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">#filterBtn{
+                            </property>
+                            <property name="text">
+                             <string>Import</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="pdfBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#pdfBtn{
+	font-size:16px;
+}
+
+#pdfBtn::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>PDF</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="refreshBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#refreshBtn{
+	font-size:16px;
+}
+
+#refreshBtn::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Refresh</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="filterBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#filterBtn{
 	font-size:16px;
 }
 
@@ -1094,22 +1279,25 @@ font-size:20px;
 color: rgb(58, 45, 132);
 background-color: rgb(232, 232, 232);
 }</string>
-                        </property>
-                        <property name="text">
-                         <string>Filter</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QToolButton" name="settingsBtn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>100</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">#settingsBtn{
+                            </property>
+                            <property name="text">
+                             <string>Filter</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="settingsBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#settingsBtn{
 	font-size:16px;
 }
 
@@ -1118,56 +1306,3790 @@ font-size:20px;
 color: rgb(58, 45, 132);
 background-color: rgb(232, 232, 232);
 }</string>
-                        </property>
-                        <property name="text">
-                         <string>Settings</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QScrollArea" name="dashboardScrollArea_2">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="widgetResizable">
-                <bool>true</bool>
-               </property>
-               <widget class="QWidget" name="dashboardContentWidget">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>2022</width>
-                  <height>2022</height>
-                 </rect>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_7">
+                            </property>
+                            <property name="text">
+                             <string>Settings</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
                  <item>
-                  <widget class="QWidget" name="widget_6" native="true">
+                  <widget class="QScrollArea" name="dashboardScrollArea_2">
                    <property name="minimumSize">
                     <size>
-                     <width>2000</width>
-                     <height>2000</height>
+                     <width>0</width>
+                     <height>0</height>
                     </size>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout">
-                    <item row="0" column="0">
+                   <property name="styleSheet">
+                    <string notr="true">border:none;
+background-color: rgb(255, 255, 255)</string>
+                   </property>
+                   <property name="widgetResizable">
+                    <bool>true</bool>
+                   </property>
+                   <widget class="QWidget" name="dashboardContentWidget">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>2022</width>
+                      <height>2022</height>
+                     </rect>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_7">
+                     <item>
+                      <widget class="QWidget" name="widget_6" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>2000</width>
+                         <height>2000</height>
+                        </size>
+                       </property>
+                       <layout class="QGridLayout" name="gridLayout">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item row="0" column="0">
+                         <layout class="QGridLayout" name="chartLayout"/>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="listStudent_page">
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="mainSet_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>1133</width>
+                  <height>710</height>
+                 </size>
+                </property>
+                <property name="mouseTracking">
+                 <bool>true</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#mainSet{
+border: none;
+border-radius: 10px;
+}</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QWidget" name="header_2" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>1100</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>145</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border-bottom: 1px solid rgb(0, 0, 0);
+border-radius: 0px;</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_9">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
                      <widget class="QWidget" name="widget_7" native="true">
-                      <property name="autoFillBackground">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>1000</height>
+                       </size>
+                      </property>
+                      <property name="mouseTracking">
+                       <bool>true</bool>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">border:none;</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_10">
+                       <property name="sizeConstraint">
+                        <enum>QLayout::SetDefaultConstraint</enum>
+                       </property>
+                       <property name="leftMargin">
+                        <number>11</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>5</number>
+                       </property>
+                       <item alignment="Qt::AlignLeft">
+                        <widget class="QWidget" name="widget_9" native="true">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">border:none;</string>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_11">
+                          <property name="topMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>11</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>5</number>
+                          </property>
+                          <item>
+                           <widget class="QToolButton" name="addStudentBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#addStudentBtn{
+	font-size:16px;	
+}
+
+#addStudentBtn::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Add new</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="editStudentBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#editStudentBtn{
+	font-size:16px;	
+}
+
+#editStudentBtn::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Edit</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="exportBtn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                             </font>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#exportBtn_2{
+	font-size:16px;
+	
+}
+
+#exportBtn_2::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Export</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="importBtn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#importBtn_2{
+	font-size:16px;
+}
+
+#importBtn_2::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Import</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="refreshBtn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#refreshBtn_2{
+	font-size:16px;
+}
+
+#refreshBtn_2::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Refresh</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="settingsBtn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#settingsBtn_2{
+	font-size:16px;
+}
+
+#settingsBtn_2::hover{
+font-size:20px;
+color: rgb(58, 45, 132);
+background-color: rgb(232, 232, 232);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Settings</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QComboBox" name="FilterCB">
+                            <property name="minimumSize">
+                             <size>
+                              <width>115</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#FilterCB{
+border-radius: 8px;
+font-size: 15px;
+padding-left: 8px;
+border: 0px solid rgb(99, 99, 99);
+background-color: rgb(227, 227, 227)
+}
+
+#FilterCB:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#FilterCB::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#FilterCB::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                            </property>
+                            <property name="editable">
+                             <bool>false</bool>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>15</width>
+                              <height>15</height>
+                             </size>
+                            </property>
+                            <item>
+                             <property name="text">
+                              <string>Filter</string>
+                             </property>
+                             <property name="icon">
+                              <iconset>
+                               <normaloff>../icons/filter.svg</normaloff>../icons/filter.svg</iconset>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="frameSearch" native="true">
+                            <property name="enabled">
+                             <bool>true</bool>
+                            </property>
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>1000</width>
+                              <height>50</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">border: 1px solid rgb(148, 148, 148);
+padding: 5px  10px;
+background-color: rgb(230, 230, 230);
+border-radius: 20px;</string>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_5">
+                             <property name="spacing">
+                              <number>11</number>
+                             </property>
+                             <property name="leftMargin">
+                              <number>11</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="rightMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>0</number>
+                             </property>
+                             <item>
+                              <widget class="QLineEdit" name="search">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>285</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>1000</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">border:none;
+font-size:18px;
+</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Search</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item alignment="Qt::AlignLeft">
+                              <widget class="QPushButton" name="searchStdBtn">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>46</width>
+                                 <height>41</height>
+                                </size>
+                               </property>
+                               <property name="font">
+                                <font>
+                                 <weight>50</weight>
+                                 <bold>false</bold>
+                                </font>
+                               </property>
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">#searchStdBtn{
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px;
+border-top-left-radius: 0px;
+border-bottom-left-radius: 0px;
+background-color: rgb(167, 167, 167)
+}
+
+#searchStdBtn:hover{
+background-color: rgb(107, 107, 107)
+}</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset>
+                                 <normaloff>../icons/search.svg</normaloff>../icons/search.svg</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>20</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_10" native="true">
+                   <layout class="QVBoxLayout" name="verticalLayout_10">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QTableWidget" name="tableList">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <weight>50</weight>
+                        <bold>false</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QHeaderView::section {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #bde0fe, stop:1 #a2d2ff);
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+}
+
+QTableWidget {
+    gridline-color: #023047;
+}
+
+tableList{
+	border:none;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background: #f0f0f0;
+    width: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: #a9a9a9;
+    min-height: 50px;
+    border-radius: 4px;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background: #f0f0f0;
+    height: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #a9a9a9;
+    min-width: 20px;
+    border-radius: 4px;
+}
+
+
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Plain</enum>
+                      </property>
+                      <property name="lineWidth">
+                       <number>1</number>
+                      </property>
+                      <property name="midLineWidth">
+                       <number>0</number>
+                      </property>
+                      <property name="autoScroll">
+                       <bool>true</bool>
+                      </property>
+                      <property name="editTriggers">
+                       <set>QAbstractItemView::NoEditTriggers</set>
+                      </property>
+                      <property name="dragEnabled">
                        <bool>false</bool>
                       </property>
+                      <property name="alternatingRowColors">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textElideMode">
+                       <enum>Qt::ElideRight</enum>
+                      </property>
+                      <property name="showGrid">
+                       <bool>true</bool>
+                      </property>
+                      <property name="gridStyle">
+                       <enum>Qt::SolidLine</enum>
+                      </property>
+                      <property name="sortingEnabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="cornerButtonEnabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="rowCount">
+                       <number>3000</number>
+                      </property>
+                      <attribute name="horizontalHeaderVisible">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderCascadingSectionResizes">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                       <number>160</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderHighlightSections">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderMinimumSectionSize">
+                       <number>49</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderStretchLastSection">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderVisible">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderCascadingSectionResizes">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderDefaultSectionSize">
+                       <number>37</number>
+                      </attribute>
+                      <attribute name="verticalHeaderHighlightSections">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderMinimumSectionSize">
+                       <number>30</number>
+                      </attribute>
+                      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderStretchLastSection">
+                       <bool>false</bool>
+                      </attribute>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <row/>
+                      <column>
+                       <property name="text">
+                        <string>Student ID</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Full Name</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Gender</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Date of Birth</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Email</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Phone Number</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Address</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Major</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Class</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Academic Year</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Enrollment Year</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Semester</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>GPA</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Accumulated credits</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Attendance Rate</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Scholarship Info</string>
+                       </property>
+                      </column>
                      </widget>
                     </item>
                    </layout>
@@ -1175,9 +5097,159 @@ background-color: rgb(232, 232, 232);
                  </item>
                 </layout>
                </widget>
-              </widget>
-             </item>
-            </layout>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="scores_page"/>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>135</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #507dbc;
+border-radius: 0px;
+border: 0px solid rgb(156, 156, 156)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>15</number>
+          </property>
+          <property name="topMargin">
+           <number>11</number>
+          </property>
+          <property name="rightMargin">
+           <number>15</number>
+          </property>
+          <property name="bottomMargin">
+           <number>11</number>
+          </property>
+          <item alignment="Qt::AlignLeft">
+           <widget class="QLabel" name="header_DBD">
+            <property name="minimumSize">
+             <size>
+              <width>350</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>51</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#header_DBD{	
+	font: 81 16pt &quot;Rockwell Extra Bold&quot;;
+	border:none;
+	padding-left: 5px;
+	color: rgb(255, 255, 255)
+}</string>
+            </property>
+            <property name="text">
+             <string>Dashboard</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_4">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="userInfoLabel">
+            <property name="minimumSize">
+             <size>
+              <width>320</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>-1</pointsize>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border:none;
+font-size: 17px;
+color: rgb(255, 255, 255)</string>
+            </property>
+            <property name="text">
+             <string>👤 UserName (Online 🟢)</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="logoutBtn">
+            <property name="minimumSize">
+             <size>
+              <width>95</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>-1</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#logoutBtn{
+border-radius: 8px;
+font-size: 17px;
+background-color: #e63946;
+color: rgb(255, 255, 255);
+}
+
+#logoutBtn::hover{
+background-color: rgb(130, 130, 130);
+}</string>
+            </property>
+            <property name="text">
+             <string>Logout</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -1189,6 +5261,8 @@ background-color: rgb(232, 232, 232);
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

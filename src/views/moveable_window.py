@@ -1,12 +1,9 @@
-from PyQt5.QtWidgets import QMainWindow
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QPoint
 
-class MoveableWindow(QMainWindow):
+class MoveableWindow:
     def __init__(self):
-        super().__init__()
         self._old_pos = None
 
-    # di chuyển giao diện
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self._old_pos = event.globalPos()
@@ -19,3 +16,7 @@ class MoveableWindow(QMainWindow):
 
     def mouseReleaseEvent(self, event):
         self._old_pos = None
+
+    def invisible(self):
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
