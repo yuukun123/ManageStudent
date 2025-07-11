@@ -1,13 +1,13 @@
 from src.utils.validators import is_valid_email, is_valid_phone
-from src.models.student.student_model import add_student
+# from src.models.student.student_model import add_student
 from src.models.student.major_model import get_all_majors
-from src.models.student.class_model import get_all_classrooms
+from src.models.student.academic_year_model import get_all_academic_years
 
 class StudentFormController:
     def __init__(self, view):
         self.view = view
         self.setup_major_comboboxes()
-        self.setup_classrooms_comboboxes()
+        # self.setup_academic_year_comboboxes()
 
     def handle_save(self):
         data = self.view.get_form_data()
@@ -31,16 +31,11 @@ class StudentFormController:
         for major_id, major_name in majors:
             self.view.inputMajor.addItem(major_name, major_id)
 
-    def setup_classrooms_comboboxes(self):
-        classrooms = get_all_classrooms()
-        self.view.inputClassroom.clear()
-        self.view.inputClassroom.addItem("Choose classroom")
-        for classroom_id, classroom_name in classrooms:
-            self.view.inputClassroom.addItem(classroom_name, classroom_id)
-
     def setup_academic_year_comboboxes(self):
-        academic_years = get_all_classrooms()
+        academic_years = get_all_academic_years()
         self.view.inputAcademicYear.clear()
         self.view.inputAcademicYear.addItem("Choose academic year")
-        for academic_year_id, academic_year_name in academic_years:
+        for academic_year_id, start_year, end_year in academic_years:
+            self.view.inputAcademicYear.addItem(academic_year_id, f"{start_year} - {end_year}")
+
 

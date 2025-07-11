@@ -18,6 +18,8 @@ class LoginController:
         from src.windows.window_manager import open_main_window
         QMessageBox.information(self.view, "Login", "✅ Đăng nhập thành công!")
         # TODO: Chuyển sang màn hình chính
+        from src.utils.academic_utils import generate_academic_years_if_needed
+        generate_academic_years_if_needed()
         open_main_window(username)
 
         # Đóng cửa sổ login

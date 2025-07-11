@@ -1,162 +1,149 @@
 from PyQt5.QtCore import QDate, Qt, QEvent, QObject
-from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QMessageBox
 
-from src.constants.form_mode import FormMode
-from src.windows.student.function_window import open_add_edit_student
-
+from src.models.student.student_model import get_students_by_class_ids
+from src.components.student_filters import setup_faculty_filter, setup_classroom_filter
+from src.components.filter_utils import filter_students_by_keyword, sort_students_by_name
+from src.constants.table_headers import STUDENT_TABLE_HEADERS
 
 class StudentListController(QObject):
-    def __init__(self, table_widget, parent=None, student_data=None, edit_button=None):
+    def __init__(self, table_widget, parent=None, student_page=None):
         super().__init__(parent)
-        self.tableList = table_widget
+        self.studentList = table_widget
         self.parent = parent
-        self.editStudentBtn = edit_button  # ✅ GÁN
+        self.student_page = student_page
+        self._setup_table_header()
 
-        if self.editStudentBtn:
-            self.editStudentBtn.hide()
+        self._teacher_context = None
+        self._initialized_for_user = False
+        self._is_loading = False
 
-        self.tableList.itemSelectionChanged.connect(self.on_row_selected)
+        self.filterFacultyStudent = self.parent.filterFacultyStudent
+        self.filterClassroomStudent = self.parent.filterClassroomStudent
 
-        self.tableList.viewport().installEventFilter(self)
-        if parent:
-            parent.installEventFilter(self)
+        self._setup_table_behavior()
+        self._connect_signals()
 
-        self.tableList.setSelectionBehavior(QTableWidget.SelectRows)
-        self.tableList.setSelectionMode(QTableWidget.SingleSelection)
-        self.tableList.setFocusPolicy(Qt.StrongFocus)
+        self.searchInput = self.parent.search
+        self.searchButton = self.parent.searchStdBtn
 
-    def eventFilter(self, watched, event):
-        if event.type() == QEvent.MouseButtonPress:
-            # Click vùng bên trong table nhưng không có item
-            if watched == self.tableList.viewport():
-                index = self.tableList.indexAt(event.pos())
-                if not index.isValid():
-                    self.tableList.clearSelection()
-                    if self.editStudentBtn:
-                        self.editStudentBtn.hide()
+        self.searchButton.clicked.connect(self.update_student_table)
 
-            # 👇 Click bên ngoài bảng
-            elif watched == self.parent:
-                # Nếu vùng click không nằm trong table
-                global_pos = event.globalPos()
-                table_rect = self.tableList.geometry()
-                table_pos = self.tableList.mapToGlobal(table_rect.topLeft())
-                table_global_rect = table_rect.translated(table_pos - table_rect.topLeft())
+    def _setup_table_behavior(self):
+        self.studentList.setSelectionBehavior(QTableWidget.SelectRows)
+        self.studentList.setSelectionMode(QTableWidget.SingleSelection)
+        self.studentList.setFocusPolicy(Qt.StrongFocus)
+        self.studentList.viewport().installEventFilter(self)
+        if self.parent:
+            self.parent.installEventFilter(self)
 
-                if not table_global_rect.contains(global_pos):
-                    self.tableList.clearSelection()
-                    if self.editStudentBtn:
-                        self.editStudentBtn.hide()
+    def _connect_signals(self):
+        self.studentList.itemSelectionChanged.connect(self.on_row_selected)
+        self.filterFacultyStudent.currentIndexChanged.connect(self.on_faculty_changed)
+        self.filterClassroomStudent.currentIndexChanged.connect(self.update_student_table)
+        self.parent.search.textChanged.connect(self.update_student_table)
+        self.parent.filterStudentCB.currentIndexChanged.connect(self.update_student_table)
 
-        return super().eventFilter(watched, event)
+    def setup_for_user(self, teacher_context=None):
+        if self._initialized_for_user and self._teacher_context == teacher_context:
+            return
 
-    def open_add_student_dialog(self):
-        try:
-            print("Opening add dialog...")
-            new_student = open_add_edit_student(self.parent, FormMode.ADD)
-            if new_student:
-                self.save_student(new_student)
-        except Exception as e:
-            print("🔥 Error when opening dialog:", e)
+        self._teacher_context = teacher_context
 
-    def open_edit_student_dialog(self, student_data):
-        try:
-            print("🔍 student_data:", student_data)
-            updated_student = open_add_edit_student(self.parent, FormMode.EDIT, student_data)
-            if updated_student:
-                self.update_student(updated_student)
+        if teacher_context is None:
+            print("❌ Không có thông tin phân quyền cho giáo viên.")
+            QMessageBox.critical(self.parent, "Lỗi phân quyền", "Tài khoản hiện tại chưa được phân công lớp học.")
+            return
 
-        except Exception as e:
-            print("🔥 Error when opening dialog:", e)
+        print("Setting up view for: Teacher")
 
-    def save_student(self, new_student):
-        from src.models.student import student_model
-        student_model.add_student(new_student)
-        self.load_students_to_table()
+        self._is_loading = True
+        self.setup_faculty_filter()
+        self._is_loading = False
 
-    def update_student(self, updated_student):
-        from src.models.student import student_model
-        student_model.update_student(updated_student["id"], updated_student)
-        self.load_students_to_table()
+        self.update_student_table()
+        self._initialized_for_user = True
 
+    def _setup_table_header(self):
+        self.studentList.setColumnCount(len(STUDENT_TABLE_HEADERS))
+        self.studentList.setHorizontalHeaderLabels(STUDENT_TABLE_HEADERS)
 
-    def handle_edit_button_clicked(self):
-        selected_ranges = self.tableList.selectedRanges()
-        if selected_ranges:
-            row = selected_ranges[0].topRow()
-            student_data = self.get_student_data_from_row(row)
-            self.open_edit_student_dialog(student_data)
+        self.studentList.horizontalHeader().setVisible(True)
+        self.studentList.verticalHeader().setVisible(True)
+
+        fixed_width = 200
+        for col in range(len(STUDENT_TABLE_HEADERS)):
+            self.studentList.setColumnWidth(col, fixed_width)
+
+    def setup_faculty_filter(self):
+        print("🧪 Thiết lập bộ lọc KHOA...")
+        setup_faculty_filter(self.filterFacultyStudent, self._teacher_context)
+        self.setup_classroom_filter()
+
+    def setup_classroom_filter(self):
+        print("🧪 Thiết lập bộ lọc LỚP...")
+        faculty_id = self.filterFacultyStudent.currentData()
+        setup_classroom_filter(self.filterClassroomStudent, faculty_id, self._teacher_context)
+
+        if faculty_id == -1:
+            print("✅ Gọi lại update_student_table vì chọn All faculty")
+            self.update_student_table()
+
+    def on_faculty_changed(self):
+        if self._is_loading:
+            return
+
+        print("⚙️ User changed faculty -> Cập nhật danh sách LỚP")
+        self.setup_classroom_filter()
+
+    def update_student_table(self):
+        if self._is_loading:
+            return
+
+        print("⚙️ update_student_table() -> Cập nhật BẢNG DỮ LIỆU")
+        faculty_id = self.filterFacultyStudent.currentData()
+        class_id = self.filterClassroomStudent.currentData()
+        keyword = self.parent.search.text().strip().lower()
+        sort_order = self.parent.filterStudentCB.currentText()
+        print(f"--> Filtering with Faculty ID: {faculty_id}, Class ID: {class_id}, Keyword: '{keyword}'")
+
+        all_allowed_students = []
+        if self._teacher_context:
+            allowed_classes = self._teacher_context.get('classes', [])
+            if allowed_classes:
+                allowed_class_ids = [c[0] for c in allowed_classes]
+                all_allowed_students = get_students_by_class_ids(allowed_class_ids)
+
+        filtered_list = all_allowed_students
+        if faculty_id != -1:
+            filtered_list = [s for s in filtered_list if s.get('faculty_id') == faculty_id]
+        if class_id != -1:
+            filtered_list = [s for s in filtered_list if s.get('class_id') == class_id]
+
+        filtered_list = filter_students_by_keyword(filtered_list, keyword)
+
+        if sort_order in ["sort A - Z", "sort Z - A"]:
+            filtered_list = sort_students_by_name(filtered_list, sort_order)
+
+        self.populate_table(filtered_list)
+
+    def populate_table(self, students):
+        self.studentList.setRowCount(0)
+        for row_idx, student in enumerate(students):
+            self.studentList.insertRow(row_idx)
+            values = [
+                student.get("student_id", ""), student.get("full_name", ""), student.get("gender", ""),
+                student.get("date_of_birth", ""), student.get("email", ""), student.get("phone_number", ""),
+                student.get("address", ""), student.get("faculty_name", ""), student.get("major_name", ""),
+                student.get("class_name", ""), str(student.get("academic_year", "")),
+                str(student.get("enrollment_year", "")), str(student.get("semester_name", "")),
+                str(student.get("gpa", "")), str(student.get("accumulated_credits", "")),
+                str(student.get("attendance_rate", "")), str(student.get("scholarship_info", ""))
+            ]
+            for col_idx, value in enumerate(values):
+                self.studentList.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
 
     def on_row_selected(self):
         print("📌 Row selection changed")
-        selected = self.tableList.selectedRanges()
+        selected = self.studentList.selectedRanges()
         print("Selected ranges:", selected)
-        if self.editStudentBtn:
-            self.editStudentBtn.setVisible(bool(selected))
-
-    def get_student_data_from_row(self, row):
-        def safe_get_text(column):
-            item = self.tableList.item(row, column)
-            return item.text() if item else ""
-
-        student_id = safe_get_text(0)
-        name = safe_get_text(1)
-        gender = safe_get_text(2)
-        dob_str = safe_get_text(3)
-        dob = QDate.fromString(dob_str, "dd/MM/yyyy") if dob_str else QDate.currentDate()
-        email = safe_get_text(4)
-        phone = safe_get_text(5)
-        address = safe_get_text(6)
-        major = safe_get_text(7)
-        class_name = safe_get_text(8)
-        academic_year = safe_get_text(9)
-        enrollment_date_str = safe_get_text(10)
-        enrollment_date = QDate.fromString(enrollment_date_str, "dd/MM/yyyy") if enrollment_date_str else QDate.currentDate()
-        semester = safe_get_text(11)
-        gpa = safe_get_text(12)
-        accumulated_credits = safe_get_text(13)
-        attendance_rate = safe_get_text(14)
-        scholarship_info = safe_get_text(15)
-
-        return {
-            "id": student_id,
-            "name": name,
-            "gender": gender,
-            "dob": dob,
-            "email": email,
-            "phone": phone,
-            "address": address,
-            "major": major,
-            "class_name": class_name,
-            "academic_year": academic_year,
-            "enrollment_date": enrollment_date,
-            "semester": semester,
-            "gpa": gpa,
-            "accumulated_credits": accumulated_credits,
-            "attendance_rate": attendance_rate,
-            "scholarship_info": scholarship_info
-
-        }
-
-    def load_students_to_table(self):
-        from src.models.student import student_model
-        students = student_model.get_all_students()
-
-        print("📌 students:", students)
-
-        self.tableList.setRowCount(0)
-
-        for row_idx, student in enumerate(students):
-            self.tableList.insertRow(row_idx)
-            for col_idx, value in enumerate(student):
-                item = QTableWidgetItem(str(value))
-                self.tableList.setItem(row_idx, col_idx, item)
-
-
-
-
-
-
-
-
-
