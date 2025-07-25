@@ -3,7 +3,9 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QMessageBox, QHeader
 
 from src.constants.form_mode import FormMode
 from src.windows.student.function_window import open_add_edit_student_score
-from src.models.student.student_model import get_student_scores_for_subject, get_subjects_by_teacher_and_classes
+from src.models.student.student_model import (
+    get_student_scores_for_subject, get_subjects_by_teacher_and_classes, get_all_academic_years, get_class_subject_id, get_start_year_from_academic_id
+)
 from src.components.student_filters import setup_faculty_filter, setup_classroom_filter
 from src.components.filter_utils import filter_students_by_keyword, sort_students_by_name
 from src.constants.table_headers import SCORE_TABLE_HEADERS
@@ -16,22 +18,29 @@ class StudentScoreController(QObject):
         self.parent = parent
         self.editScoreBtn = edit_button
         self.score_page = score_page
-        self._setup_table_header()
+
+        # Gán các widget từ parent
+        self.filterFacultyScore = self.parent.filterFacultyScore
+        self.filterClassroomScore = self.parent.filterClassroomScore
+        self.filterAcademicYearScore = self.parent.filterAcademicYearScore
+        # Đây là một QLabel, không phải ComboBox
+        self.subjectLabel = self.parent.filterSubjectScore
+        self.searchInput = self.parent.searchName
+        self.searchButton = self.parent.searchStdBtn_2
+        self.sortComboBox = self.parent.filterScoreCB
+
 
         self._teacher_context = None
         self._initialized_for_user = False
         self._is_loading = False
+        self.current_subject_id = None
+        self.current_class_subject_id = None
+        self.current_year = None
 
-        self.filterFacultyScore = self.parent.filterFacultyScore
-        self.filterClassroomScore = self.parent.filterClassroomScore
-
+        self._setup_table_header()
         self._setup_table_behavior()
         self._connect_signals()
-
-        self.searchInput = self.parent.searchName
-        self.searchButton_2 = self.parent.searchStdBtn_2
-
-        self.searchButton_2.clicked.connect(self.update_student_table)
+        self._populate_academic_year_filter()
 
     def _setup_table_behavior(self):
         self.scoresList.setSelectionBehavior(QTableWidget.SelectRows)
@@ -40,33 +49,6 @@ class StudentScoreController(QObject):
         self.scoresList.viewport().installEventFilter(self)
         if self.parent:
             self.parent.installEventFilter(self)
-
-    def _connect_signals(self):
-        self.scoresList.itemSelectionChanged.connect(self.on_row_selected)
-        self.filterFacultyScore.currentIndexChanged.connect(self.on_faculty_changed)
-        self.filterClassroomScore.currentIndexChanged.connect(self.update_student_table)
-        self.parent.searchName.textChanged.connect(self.update_student_table)
-        self.parent.filterScoreCB.currentIndexChanged.connect(self.update_student_table)
-
-    def setup_for_user(self, teacher_context=None):
-        if self._initialized_for_user and self._teacher_context == teacher_context:
-            return
-
-        self._teacher_context = teacher_context
-
-        if teacher_context is None:
-            print("❌ Không có thông tin phân quyền cho giáo viên.")
-            QMessageBox.critical(self.parent, "Lỗi phân quyền", "Tài khoản hiện tại chưa được phân công lớp học.")
-            return
-
-        print("Setting up view for: Teacher")
-
-        self._is_loading = True
-        self.setup_faculty_filter()
-        self._is_loading = False
-
-        self.update_student_table()
-        self._initialized_for_user = True
 
     def _setup_table_header(self):
         self.scoresList.setColumnCount(len(SCORE_TABLE_HEADERS))
@@ -79,131 +61,161 @@ class StudentScoreController(QObject):
         for col in range(len(SCORE_TABLE_HEADERS)):
             self.scoresList.setColumnWidth(col, fixed_width)
 
-    def update_subject_label(self):
-        try:
-            if not hasattr(self.parent, 'filterSubjectScore') or not isinstance(self.parent.filterSubjectScore, QLabel):
-                print("❌ parent.filterSubjectScore không tồn tại hoặc không phải QLabel.")
-                return
+    def _connect_signals(self):
+        """Kết nối tín hiệu với các hàm xử lý."""
+        self.filterFacultyScore.currentIndexChanged.connect(self.on_faculty_filter_changed)
+        self.filterClassroomScore.currentIndexChanged.connect(self.update_student_table)
+        self.filterAcademicYearScore.currentIndexChanged.connect(self.update_student_table)
+        # Các tín hiệu khác vẫn giữ nguyên
+        self.searchInput.textChanged.connect(self.update_student_table)
+        self.searchButton.clicked.connect(self.update_student_table)
+        self.sortComboBox.currentIndexChanged.connect(self.update_student_table)
+        self.scoresList.itemSelectionChanged.connect(self.on_row_selected)
 
-            selected_class_id = self.filterClassroomScore.currentData()
-            teacher_id = self._teacher_context.get("teacher_id")
+    def setup_for_user(self, teacher_context):
+        """Hàm khởi tạo chính, được gọi khi có thông tin giáo viên."""
+        if self._initialized_for_user:
+            return
+        if not teacher_context:
+            QMessageBox.critical(self.parent, "Lỗi phân quyền", "Không có thông tin phân quyền cho giáo viên.")
+            return
 
-            print(f"🔍 Lấy môn học cho class_id: {selected_class_id}, teacher_id: {teacher_id}")
+        self._teacher_context = teacher_context
+        self._initialized_for_user = True
+        print("🚀 Setting up view for Teacher on Scores Page...")
 
-            if selected_class_id == -1:
-                self.parent.filterSubjectScore.setText("All classes selected")
-                print("📚 Không thể xác định môn học khi chọn tất cả lớp.")
-                return
+        self._is_loading = True
+        self.setup_faculty_filter()  # Hàm này sẽ tự động gọi setup_classroom_filter
+        self._is_loading = False
 
-            subjects = get_subjects_by_teacher_and_classes(teacher_id, [selected_class_id])
+        self.update_student_table()  # Gọi lần cuối sau khi setup
 
-            if subjects:
-                subject_names = ", ".join(sub["subject_name"] for sub in subjects)
-                self.parent.filterSubjectScore.setText(f"Subject: {subject_names}")
-                print(f"📚 Môn học: {subject_names}")
-            else:
-                self.parent.filterSubjectScore.setText("Subject: N/A")
-                print("📚 Không có môn học.")
-        except Exception as e:
-            print("⚠️ Lỗi khi lấy tên môn học:", e)
-            import traceback
-            traceback.print_exc()
-            self.parent.filterSubjectScore.setText("Subject: N/A")
+    def _populate_academic_year_filter(self):
+        """Điền dữ liệu vào ComboBox lọc năm học."""
+        self.filterAcademicYearScore.clear()
+        all_years = get_all_academic_years()
+        if not all_years:
+            return
+
+        for year in all_years:
+            display_text = f"{year['start_year']} - {year['end_year']}"
+            # Quan trọng: Hiển thị text dễ đọc, nhưng lưu trữ ID để dùng cho truy vấn
+            self.filterAcademicYearScore.addItem(display_text, userData=year['academic_year_id'])
 
     def setup_faculty_filter(self):
-        print("🧪 Thiết lập bộ lọc KHOA...")
-        setup_faculty_filter(self.filterFacultyScore, self._teacher_context)
+        """Điền dữ liệu vào ComboBox Khoa."""
+        print("  -> 1. Populating Faculty filter...")
+        setup_faculty_filter(self.filterFacultyScore, self._teacher_context, block_signals=True)
+        self.setup_classroom_filter()
+
+    def on_faculty_filter_changed(self):
+        """Khi Khoa thay đổi, cập nhật lại bộ lọc Lớp."""
+        if self._is_loading: return
+        print("⚙️ Faculty changed -> updating classroom filter")
+        self.setup_classroom_filter()
         self.setup_classroom_filter()
 
     def setup_classroom_filter(self):
-        print("🧪 Thiết lập bộ lọc LỚP...")
+        print("  -> 2. Populating Classroom filter...")
         faculty_id = self.filterFacultyScore.currentData()
-        setup_classroom_filter(self.filterClassroomScore, faculty_id, self._teacher_context)
+        # Dùng hàm helper đã sửa (không có "All classroom")
+        # Vẫn block tín hiệu để tránh gọi update_student_table quá sớm
+        setup_classroom_filter(self.filterClassroomScore, faculty_id, self._teacher_context, block_signals=True)
 
-        if faculty_id == -1:
-            print("✅ Gọi lại update_student_table vì chọn All faculty")
-            self.update_student_table()
-
-        # ✅ Hiển thị môn học nếu chọn 1 lớp cụ thể
-        self.update_subject_label()
-
-    def on_faculty_changed(self):
-        if self._is_loading:
-            return
-
-        print("⚙️ User changed faculty -> Cập nhật danh sách LỚP")
-        self.setup_classroom_filter()
+        # Tự động chọn item đầu tiên nếu có
+        if self.filterClassroomScore.count() > 0:
+            self.filterClassroomScore.setCurrentIndex(0)
 
     def update_student_table(self):
-        if self._is_loading:
-            return
+        try:
+            if self._is_loading: return
+            print("\n🔄 Updating student score table...")
+            if not self._teacher_context: return
 
-        print("⚙️ update_student_table() -> Cập nhật BẢNG DỮ LIỆU")
-        faculty_id = self.filterFacultyScore.currentData()
-        class_id = self.filterClassroomScore.currentData()
-        keyword = self.parent.searchName.text().strip().lower()
-        sort_order = self.parent.filterScoreCB.currentText()
-        print(f"--> Filtering with Faculty ID: {faculty_id}, Class ID: {class_id}, Keyword: '{keyword}'")
-
-        all_allowed_students = []
-        if self._teacher_context:
             teacher_id = self._teacher_context.get('teacher_id')
-            allowed_classes = self._teacher_context.get('classes', [])
-            if allowed_classes:
-                allowed_class_ids = [c[0] for c in allowed_classes]
+            class_id = self.filterClassroomScore.currentData()
 
-                # ✅ Lọc lại theo class_id nếu được chọn
-                filtered_class_ids = allowed_class_ids
-                if class_id != -1:
-                    filtered_class_ids = [cid for cid in allowed_class_ids if cid == class_id]
+            # Thêm một bước kiểm tra an toàn
+            if class_id is None or class_id == -1:
+                print("  -> Info: No valid class selected. Clearing table.")
+                self.populate_table([])
+                self.subjectLabel.setText("Please select a class")
+                return
 
-                print("Filtered class ids:", filtered_class_ids)
+            # Logic tự động tìm môn học (giữ nguyên)
+            subjects = get_subjects_by_teacher_and_classes(teacher_id, [class_id])
+            if not subjects:
+                print(f"  -> Info: No subjects for class {class_id}.")
+                self.populate_table([])
+                self.subjectLabel.setText("Subject: N/A")
+                self.current_subject_id = None
+                return
 
-                # ✅ Lấy subject_id trước khi gọi hàm lấy điểm
-                subjects = get_subjects_by_teacher_and_classes(teacher_id, filtered_class_ids)
-                if not subjects:
-                    print("❌ Không có môn học nào phù hợp với lớp được chọn.")
-                    self.populate_table([])  # clear bảng
-                    self.update_subject_label()
-                    return
+            first_subject = subjects[0]
+            subject_id_to_query = first_subject["subject_id"]
+            semester_id_from_db= first_subject["semester_id"]
+            subject_name_to_display = first_subject["subject_name"]
 
-                # ✅ Lấy subject đầu tiên
-                subject_id = subjects[0]["subject_id"]
+            self.current_subject_id = subject_id_to_query
 
-                # ✅ Gọi hàm đúng với đủ 3 tham số
-                all_allowed_students = get_student_scores_for_subject(filtered_class_ids, teacher_id, subject_id)
-                print("Fetched students:", all_allowed_students)
+            self.subjectLabel.setText(f"{subject_name_to_display}")
 
-        filtered_list = all_allowed_students
-        if faculty_id != -1:
-            filtered_list = [s for s in filtered_list if s.get('faculty_id') == faculty_id]
-        if class_id != -1:
-            filtered_list = [s for s in filtered_list if s.get('class_id') == class_id]
+            # Lấy năm học và truy vấn điểm (giữ nguyên)
+            academic_year_id = self.filterAcademicYearScore.currentData()
+            if not academic_year_id:
+                self.current_subject_id = None
+                return
 
-        filtered_list = filter_students_by_keyword(filtered_list, keyword)
+            self.current_class_subject_id = get_class_subject_id(
+                class_id, subject_id_to_query, semester_id_from_db
+            )
 
-        if sort_order in ["sort A - Z", "sort Z - A"]:
-            filtered_list = sort_students_by_name(filtered_list, sort_order)
+            self.current_year = get_start_year_from_academic_id(academic_year_id)
 
-        self.populate_table(filtered_list)
+            student_scores = get_student_scores_for_subject(
+                class_ids=[class_id],
+                teacher_id=teacher_id,
+                subject_id=subject_id_to_query,
+                academic_year_id=academic_year_id
+            )
 
-        self.update_subject_label()
+            # Lọc và sắp xếp phía client (nếu có)
+            keyword = self.searchInput.text().strip().lower()
+            if keyword:
+                student_scores = filter_students_by_keyword(student_scores, keyword)
+
+            sort_order = self.sortComboBox.currentText()
+            if sort_order in ["sort A - Z", "sort Z - A"]:
+                student_scores = sort_students_by_name(student_scores, sort_order)
+
+            self.populate_table(student_scores)
+        except Exception as e:
+
+            print("🔥🔥🔥 MỘT LỖI KHÔNG MONG MUỐN ĐÃ XẢY RA TRONG update_student_table! 🔥🔥🔥")
+
+            import traceback
+
+            traceback.print_exc()
 
     def populate_table(self, students):
+        self.scoresList.clearSelection()
+        if self.editScoreBtn:
+            self.editScoreBtn.hide()
+        """Điền dữ liệu vào QTableWidget."""
         self.scoresList.setRowCount(0)
+        if not students: return
+
         for row_idx, student in enumerate(students):
             self.scoresList.insertRow(row_idx)
             values = [
-                student.get("student_id", ""), student.get("full_name", ""), student.get("faculty_name", ""),
-                student.get("major_name", ""), student.get("class_name", ""), student.get("midterm_score", ""),
-                student.get("final_score", ""), student.get("process_score", ""),
+                student.get("student_id"), student.get("full_name"), student.get("faculty_name"),
+                student.get("major_name"), student.get("class_name"), student.get("midterm_score"),
+                student.get("final_score"), student.get("process_score"),
             ]
-            print("Populating student:", student)
             for col_idx, value in enumerate(values):
-                self.scoresList.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
-
-                print(f"🔢 Tổng số dòng: {self.scoresList.rowCount()}")
-                self.scoresList.repaint()
+                item = QTableWidgetItem()
+                item.setText(str(value) if value is not None else "N/A")
+                self.scoresList.setItem(row_idx, col_idx, item)
 
     def on_row_selected(self):
         print("📌 Row selection changed")
@@ -234,96 +246,118 @@ class StudentScoreController(QObject):
 
         return super().eventFilter(watched, event)
 
+    def open_add_score_dialog(self, student_data):
+        try:
+            faculty_name = self.filterFacultyScore.currentText()
+            class_name = self.filterClassroomScore.currentText()
 
-    # def open_add_student_dialog(self):
-    #     try:
-    #         faculty_name = self.filterFacultyScore.currentText()
-    #         class_name = self.filterClassroomScore.currentText()
-    #
-    #         if faculty_name == "All faculty" or class_name == "All classroom":
-    #             QMessageBox.warning(self.parent, "Warning", "Please select a faculty and a classroom before adding a student.")
-    #             return
-    #
-    #         print("Opening add dialog...")
-    #         new_student = open_add_edit_student_score(
-    #             self.parent,
-    #             FormMode.ADD,
-    #             default_faculty_id=self.filterFacultyScore.currentData(),
-    #             default_class_id=self.filterClassroomScore.currentData()
-    #         )
-    #         if new_student:
-    #             self.save_student(new_student)
-    #     except Exception as e:
-    #         print("🔥 Error when opening dialog:", e)
-    #
-    # def open_edit_student_dialog(self, student_data):
-    #     try:
-    #         print("🔍 student_data:", student_data)
-    #         updated_student = open_add_edit_student_score(self.parent, FormMode.EDIT, student_data)
-    #         if updated_student:
-    #             self.update_student(updated_student)
-    #
-    #     except Exception as e:
-    #         print("🔥 Error when opening dialog:", e)
-    #
-    # def save_student(self, new_student):
-    #     from src.models.student import student_model
-    #     student_model.add_score(new_student)
-    #     self.update_student_table()  # Cập nhật lại bảng
-    #
-    # def update_student(self, updated_student):
-    #     from src.models.student import student_model
-    #     student_model.update_score(updated_student["id"], updated_student)
-    #     self.update_student_table()  # Cập nhật lại bảng
-    #
-    # def handle_edit_button_clicked(self):
-    #     selected_ranges = self.scoresListt.selectedRanges()
-    #     if selected_ranges:
-    #         row = selected_ranges[0].topRow()
-    #         student_data = self.get_student_data_from_row(row)
-    #         self.open_edit_student_dialog(student_data)
+            if faculty_name == "All faculty":
+                QMessageBox.warning(self.parent, "Warning", "Please select a faculty before adding a student.")
+                return
 
-    # def get_student_data_from_row(self, row):
-    #     def safe_get_text(column):
-    #         item = self.scoresListt.item(row, column)
-    #         return item.text() if item else ""
-    #
-    #     student_id = safe_get_text(0)
-    #     name = safe_get_text(1)
-    #     gender = safe_get_text(2)
-    #     dob_str = safe_get_text(3)
-    #     dob = QDate.fromString(dob_str, "dd/MM/yyyy") if dob_str else QDate.currentDate()
-    #     email = safe_get_text(4)
-    #     phone = safe_get_text(5)
-    #     address = safe_get_text(6)
-    #     faculty = safe_get_text(7)
-    #     major = safe_get_text(8)
-    #     class_name = safe_get_text(9)
-    #     academic_year = safe_get_text(10)
-    #     enrollment_date_str = safe_get_text(11)
-    #     enrollment_date = QDate.fromString(enrollment_date_str, "dd/MM/yyyy") if enrollment_date_str else QDate.currentDate()
-    #     semester = safe_get_text(12)
-    #     gpa = safe_get_text(13)
-    #     accumulated_credits = safe_get_text(14)
-    #     attendance_rate = safe_get_text(15)
-    #     scholarship_info = safe_get_text(16)
-    #
-    #     return {
-    #         "id": student_id,
-    #         "name": name,
-    #         "gender": gender,
-    #         "dob": dob,
-    #         "email": email,
-    #         "phone": phone,
-    #         "address": address,
-    #         "faculty": faculty,
-    #         "major": major,
-    #         "class_name": class_name,
-    #         "academic_year": academic_year,
-    #         "enrollment_date": enrollment_date,
-    #         "semester": semester,
-    #         "gpa": gpa,
-    #         "accumulated_credits": accumulated_credits,
-    #         "attendance_rate": attendance_rate,
-    #         "scholarship_info": scholarship_info
-    #     }
+            print("Opening add dialog...")
+            new_student = open_add_edit_student_score(
+                self.parent,FormMode.ADD,
+                default_faculty_id=self.filterFacultyScore.currentData(),
+                default_class_id=self.filterClassroomScore.currentData(),
+                student_data=student_data,
+                subject_id = self.current_subject_id,
+                class_subject_id = self.current_class_subject_id,  # <-- Mới
+                year = self.current_year
+            )
+            if new_student:
+                self.save_student_score(new_student)
+        except Exception as e:
+            print("🔥 Error when opening dialog:", e)
+
+    def open_edit_dialog(self, student_data):
+        try:
+            print("🔍 student_data:", student_data)
+            # student_data = self.get_student_score_data_from_row()
+
+            if not student_data:
+                QMessageBox.information(self.parent, "Thông báo", "Vui lòng chọn một sinh viên để sửa.")
+                return
+
+            updated_student = open_add_edit_student_score(
+                self.parent,
+                FormMode.EDIT,
+                student_data = student_data,
+                subject_id = self.current_subject_id,
+                class_subject_id = self.current_class_subject_id,  # <-- Mới
+                year = self.current_year
+            )
+            if updated_student:
+                self.update_student_score(updated_student)
+
+        except Exception as e:
+            print("🔥 Error when opening dialog:", e)
+            import traceback
+            traceback.print_exc()
+
+    def save_student_score(self, new_student):
+        from src.models.student import student_model
+        student_model.add_score(new_student)
+        print("✅ Added student score successfully")
+        self.update_student_table()  # Cập nhật lại bảng
+
+    def update_student_score(self, updated_student):
+        from src.models.student import student_model
+        student_model.update_score(updated_student)
+        print("✅ Updated student score successfully")
+        self.update_student_table()  # Cập nhật lại bảng
+
+    def handle_add_button_clicked(self):
+        selected_ranges = self.scoresList.selectedRanges()
+        if selected_ranges:
+            row = selected_ranges[0].topRow()
+            student_data = self.get_student_score_data_from_row(row)
+            self.open_add_score_dialog(student_data)
+
+    def handle_edit_button_clicked(self):
+        selected_ranges = self.scoresList.selectedRanges()
+        if selected_ranges:
+            row = selected_ranges[0].topRow()
+            student_data = self.get_student_score_data_from_row(row)
+            self.open_edit_dialog(student_data)
+
+    def get_student_score_data_from_row(self, row):
+        def safe_get_text(column):
+            item = self.scoresList.item(row, column)
+            return item.text() if item else ""
+
+        student_id = safe_get_text(0)
+        full_name = safe_get_text(1)
+        faculty = safe_get_text(2)
+        major = safe_get_text(3)
+        class_name = safe_get_text(4)
+        midterm_score = safe_get_text(5)
+        final_score = safe_get_text(6)
+        process_score = safe_get_text(7)
+
+        # # Truy xuat thong tin khac
+        # gender = safe_get_text(8)
+        # dob = safe_get_text(9)
+        # email = safe_get_text(10)
+        # phone = safe_get_text(11)
+        # address = safe_get_text(12)
+        # academic_year = safe_get_text(13)
+        # enrollment_date = safe_get_text(14)
+        # semester = safe_get_text(15)
+        # gpa = safe_get_text(16)
+        # accumulated_credits = safe_get_text(17)
+        # attendance_rate = safe_get_text(18)
+        # scholarship_info = safe_get_text(19)
+
+        return {
+            "student_id": student_id,
+            "full_name": full_name,
+            "faculty": faculty,
+            "major": major,
+            "class_name": class_name,
+            "midterm_score": midterm_score,
+            "final_score": final_score,
+            "process_score": process_score
+
+        }
+        # pass

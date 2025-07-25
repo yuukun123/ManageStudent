@@ -190,7 +190,7 @@ QGroupBox {
       <string notr="true">#closeBtn{
 	border-radius:15px;
 	border:none;
-	background-color:rgb(212, 212, 212)
+	background-color:rgb(244, 244, 244)
 }
 
 #closeBtn::hover{
@@ -267,7 +267,7 @@ QGroupBox {
       <string notr="true">#hiddenBtn{
 	border-radius:15px;
 	border:none;
-	background-color:rgb(212, 212, 212)
+	background-color:rgb(244, 244, 244)
 }
 
 #hiddenBtn::hover{

@@ -43,7 +43,7 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <property name="verticalSpacing">
+       <property name="spacing">
         <number>0</number>
        </property>
        <item row="0" column="0">
@@ -1299,7 +1299,7 @@ background-color: rgb(255, 255, 255)</string>
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>1112</width>
+                      <width>1000</width>
                       <height>950</height>
                      </rect>
                     </property>
@@ -1625,7 +1625,7 @@ background-color: rgb(227, 227, 227)
                              </property>
                              <property name="icon">
                               <iconset>
-                               <normaloff>../icons/filter.svg</normaloff>../icons/filter.svg</iconset>
+                               <normaloff>C:/Users/lenovo/.designer/icons/filter.svg</normaloff>C:/Users/lenovo/.designer/icons/filter.svg</iconset>
                              </property>
                             </item>
                             <item>
@@ -1679,6 +1679,43 @@ background-color: rgb(227, 227, 227)
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
+                       <item>
+                        <widget class="QComboBox" name="filterAcademicYearStudent">
+                         <property name="minimumSize">
+                          <size>
+                           <width>215</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">#filterAcademicYearStudent{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#filterAcademicYearStudent:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#filterAcademicYearStudent::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#filterAcademicYearStudent::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                         </property>
+                        </widget>
+                       </item>
                        <item>
                         <widget class="QComboBox" name="filterFacultyStudent">
                          <property name="minimumSize">
@@ -5413,7 +5450,17 @@ background-color: rgb(227, 227, 227)
                              </property>
                              <property name="icon">
                               <iconset>
-                               <normaloff>../icons/filter.svg</normaloff>../icons/filter.svg</iconset>
+                               <normaloff>C:/Users/lenovo/.designer/icons/filter.svg</normaloff>C:/Users/lenovo/.designer/icons/filter.svg</iconset>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>sort A - Z</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>sort Z - A</string>
                              </property>
                             </item>
                            </widget>
@@ -5431,7 +5478,7 @@ background-color: rgb(227, 227, 227)
                   <widget class="QWidget" name="widget_16" native="true">
                    <layout class="QHBoxLayout" name="horizontalLayout_15">
                     <property name="spacing">
-                     <number>18</number>
+                     <number>15</number>
                     </property>
                     <property name="topMargin">
                      <number>5</number>
@@ -5443,7 +5490,7 @@ background-color: rgb(227, 227, 227)
                      <widget class="QWidget" name="widget_17" native="true">
                       <layout class="QHBoxLayout" name="horizontalLayout_16">
                        <property name="spacing">
-                        <number>10</number>
+                        <number>8</number>
                        </property>
                        <property name="leftMargin">
                         <number>0</number>
@@ -5458,16 +5505,64 @@ background-color: rgb(227, 227, 227)
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QComboBox" name="filterFacultyScore">
+                        <widget class="QComboBox" name="filterAcademicYearScore">
                          <property name="minimumSize">
                           <size>
-                           <width>215</width>
+                           <width>155</width>
                            <height>35</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>300</width>
+                           <width>190</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">#filterAcademicYearScore{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#filterAcademicYearScore:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#filterAcademicYearScore::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#filterAcademicYearScore::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>Academic year</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="filterFacultyScore">
+                         <property name="minimumSize">
+                          <size>
+                           <width>220</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>260</width>
                            <height>16777215</height>
                           </size>
                          </property>
@@ -5509,13 +5604,13 @@ background-color: #a2d2ff
                         <widget class="QComboBox" name="filterClassroomScore">
                          <property name="minimumSize">
                           <size>
-                           <width>215</width>
+                           <width>160</width>
                            <height>35</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>300</width>
+                           <width>190</width>
                            <height>16777215</height>
                           </size>
                          </property>
@@ -5557,15 +5652,21 @@ background-color: #a2d2ff
                         <widget class="QLabel" name="filterSubjectScore">
                          <property name="minimumSize">
                           <size>
-                           <width>280</width>
+                           <width>298</width>
                            <height>35</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>420</width>
+                           <height>16777215</height>
                           </size>
                          </property>
                          <property name="styleSheet">
                           <string notr="true">#filterSubjectScore{
 border-radius: 8px;
 font-size: 16px;
-padding-left: 10px;
+padding-left: 8px;
 border: 0px solid rgb(99, 99, 99);
 background-color: #a2d2ff
 }
@@ -5576,6 +5677,18 @@ background-color: #a2d2ff
                          </property>
                          <property name="text">
                           <string>filterSubjectScore</string>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <property name="margin">
+                          <number>0</number>
+                         </property>
+                         <property name="indent">
+                          <number>-1</number>
                          </property>
                         </widget>
                        </item>
@@ -5595,7 +5708,7 @@ background-color: #a2d2ff
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>740</width>
+                        <width>600</width>
                         <height>50</height>
                        </size>
                       </property>
@@ -5625,7 +5738,7 @@ border-radius: 20px;</string>
                         <widget class="QLineEdit" name="searchName">
                          <property name="minimumSize">
                           <size>
-                           <width>285</width>
+                           <width>255</width>
                            <height>0</height>
                           </size>
                          </property>
@@ -5695,9 +5808,6 @@ background-color: rgb(107, 107, 107)
                        </item>
                       </layout>
                      </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="widget_18" native="true"/>
                     </item>
                    </layout>
                   </widget>
@@ -5825,7 +5935,7 @@ QScrollBar::handle:horizontal {
                        <number>8</number>
                       </property>
                       <attribute name="horizontalHeaderVisible">
-                       <bool>true</bool>
+                       <bool>false</bool>
                       </attribute>
                       <attribute name="horizontalHeaderCascadingSectionResizes">
                        <bool>false</bool>
@@ -5846,7 +5956,7 @@ QScrollBar::handle:horizontal {
                        <bool>false</bool>
                       </attribute>
                       <attribute name="verticalHeaderVisible">
-                       <bool>true</bool>
+                       <bool>false</bool>
                       </attribute>
                       <attribute name="verticalHeaderCascadingSectionResizes">
                        <bool>false</bool>

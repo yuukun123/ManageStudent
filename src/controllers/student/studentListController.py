@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QDate, Qt, QEvent, QObject
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QMessageBox
 
-from src.models.student.student_model import get_students_by_class_ids
+from src.models.student.student_model import get_students_by_criteria, get_all_academic_years
 from src.components.student_filters import setup_faculty_filter, setup_classroom_filter
 from src.components.filter_utils import filter_students_by_keyword, sort_students_by_name
 from src.constants.table_headers import STUDENT_TABLE_HEADERS
@@ -20,9 +20,11 @@ class StudentListController(QObject):
 
         self.filterFacultyStudent = self.parent.filterFacultyStudent
         self.filterClassroomStudent = self.parent.filterClassroomStudent
+        self.filterAcademicYearStudent = self.parent.filterAcademicYearStudent
 
         self._setup_table_behavior()
         self._connect_signals()
+        self._populate_academic_year_filter()
 
         self.searchInput = self.parent.search
         self.searchButton = self.parent.searchStdBtn
@@ -37,10 +39,23 @@ class StudentListController(QObject):
         if self.parent:
             self.parent.installEventFilter(self)
 
+    def _setup_table_header(self):
+        self.studentList.setColumnCount(len(STUDENT_TABLE_HEADERS))
+        self.studentList.setHorizontalHeaderLabels(STUDENT_TABLE_HEADERS)
+
+        self.studentList.horizontalHeader().setVisible(True)
+        self.studentList.verticalHeader().setVisible(True)
+
+        fixed_width = 200
+        for col in range(len(STUDENT_TABLE_HEADERS)):
+            self.studentList.setColumnWidth(col, fixed_width)
+
     def _connect_signals(self):
         self.studentList.itemSelectionChanged.connect(self.on_row_selected)
         self.filterFacultyStudent.currentIndexChanged.connect(self.on_faculty_changed)
         self.filterClassroomStudent.currentIndexChanged.connect(self.update_student_table)
+        self.filterAcademicYearStudent.currentIndexChanged.connect(self.update_student_table)
+
         self.parent.search.textChanged.connect(self.update_student_table)
         self.parent.filterStudentCB.currentIndexChanged.connect(self.update_student_table)
 
@@ -49,6 +64,7 @@ class StudentListController(QObject):
             return
 
         self._teacher_context = teacher_context
+        self._initialized_for_user = True
 
         if teacher_context is None:
             print("❌ Không có thông tin phân quyền cho giáo viên.")
@@ -62,32 +78,23 @@ class StudentListController(QObject):
         self._is_loading = False
 
         self.update_student_table()
-        self._initialized_for_user = True
 
-    def _setup_table_header(self):
-        self.studentList.setColumnCount(len(STUDENT_TABLE_HEADERS))
-        self.studentList.setHorizontalHeaderLabels(STUDENT_TABLE_HEADERS)
+    def _populate_academic_year_filter(self):
+        """Điền dữ liệu vào ComboBox lọc năm học."""
+        self.filterAcademicYearStudent.clear()
+        all_years = get_all_academic_years()
+        if not all_years:
+            return
 
-        self.studentList.horizontalHeader().setVisible(True)
-        self.studentList.verticalHeader().setVisible(True)
-
-        fixed_width = 200
-        for col in range(len(STUDENT_TABLE_HEADERS)):
-            self.studentList.setColumnWidth(col, fixed_width)
+        for year in all_years:
+            display_text = f"{year['start_year']} - {year['end_year']}"
+            # Quan trọng: Hiển thị text dễ đọc, nhưng lưu trữ ID để dùng cho truy vấn
+            self.filterAcademicYearStudent.addItem(display_text, userData=year['academic_year_id'])
 
     def setup_faculty_filter(self):
         print("🧪 Thiết lập bộ lọc KHOA...")
-        setup_faculty_filter(self.filterFacultyStudent, self._teacher_context)
+        setup_faculty_filter(self.filterFacultyStudent, self._teacher_context, block_signals=True)
         self.setup_classroom_filter()
-
-    def setup_classroom_filter(self):
-        print("🧪 Thiết lập bộ lọc LỚP...")
-        faculty_id = self.filterFacultyStudent.currentData()
-        setup_classroom_filter(self.filterClassroomStudent, faculty_id, self._teacher_context)
-
-        if faculty_id == -1:
-            print("✅ Gọi lại update_student_table vì chọn All faculty")
-            self.update_student_table()
 
     def on_faculty_changed(self):
         if self._is_loading:
@@ -96,6 +103,15 @@ class StudentListController(QObject):
         print("⚙️ User changed faculty -> Cập nhật danh sách LỚP")
         self.setup_classroom_filter()
 
+    def setup_classroom_filter(self):
+        print("🧪 Thiết lập bộ lọc LỚP...")
+        faculty_id = self.filterFacultyStudent.currentData()
+        setup_classroom_filter(self.filterClassroomStudent, faculty_id, self._teacher_context, block_signals=True)
+
+        if faculty_id == -1:
+            print("✅ Gọi lại update_student_table vì chọn All faculty")
+            self.update_student_table()
+
     def update_student_table(self):
         if self._is_loading:
             return
@@ -103,22 +119,32 @@ class StudentListController(QObject):
         print("⚙️ update_student_table() -> Cập nhật BẢNG DỮ LIỆU")
         faculty_id = self.filterFacultyStudent.currentData()
         class_id = self.filterClassroomStudent.currentData()
+        academic_year_id = self.filterAcademicYearStudent.currentData()
         keyword = self.parent.search.text().strip().lower()
         sort_order = self.parent.filterStudentCB.currentText()
         print(f"--> Filtering with Faculty ID: {faculty_id}, Class ID: {class_id}, Keyword: '{keyword}'")
 
-        all_allowed_students = []
+        filtered_list = []
         if self._teacher_context:
             allowed_classes = self._teacher_context.get('classes', [])
             if allowed_classes:
                 allowed_class_ids = [c[0] for c in allowed_classes]
-                all_allowed_students = get_students_by_class_ids(allowed_class_ids)
 
-        filtered_list = all_allowed_students
-        if faculty_id != -1:
-            filtered_list = [s for s in filtered_list if s.get('faculty_id') == faculty_id]
-        if class_id != -1:
-            filtered_list = [s for s in filtered_list if s.get('class_id') == class_id]
+                # Gọi hàm mới với các tham số lọc
+                filtered_list = get_students_by_criteria(
+                    allowed_class_ids=allowed_class_ids,
+                    faculty_id=faculty_id,
+                    class_id=class_id,
+                    academic_year_id=academic_year_id
+                )
+
+        # filtered_list =
+        # if faculty_id != -1:
+        #     filtered_list = [s for s in filtered_list if s.get('faculty_id') == faculty_id]
+        # if class_id != -1:
+        #     filtered_list = [s for s in filtered_list if s.get('class_id') == class_id]
+        # if academic_year_id != -1:
+        #     filtered_list = [s for s in filtered_list if s.get('academic_year_id') == academic_year_id]
 
         filtered_list = filter_students_by_keyword(filtered_list, keyword)
 

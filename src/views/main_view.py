@@ -52,8 +52,8 @@ class MainWindow(QMainWindow, MoveableWindow):
             edit_button=self.editScoreBtn,
             score_page=self.Scores_page
         )
-        # self.addScoreBtn.clicked.connect(self.studentScoreController.open_add_student_dialog)
-        # self.editScoretBtn.clicked.connect(self.studentScoreController.handle_edit_button_clicked)
+        self.addScoreBtn.clicked.connect(self.studentScoreController.handle_add_button_clicked)
+        self.editScoreBtn.clicked.connect(self.studentScoreController.handle_edit_button_clicked)
 
         self.stackedWidget.currentChanged.connect(self.on_tab_changed)
 
