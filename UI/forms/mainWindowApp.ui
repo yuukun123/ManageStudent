@@ -932,12 +932,12 @@ font-size:9px;
              <bool>false</bool>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <property name="iohio]" stdset="0">
              <string/>
             </property>
-            <widget class="QWidget" name="dashboard_page">
+            <widget class="QWidget" name="Dashboard_page">
              <layout class="QVBoxLayout" name="verticalLayout">
               <property name="leftMargin">
                <number>0</number>
@@ -988,7 +988,7 @@ border-radius: 10px;
                   <number>0</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>10</number>
                  </property>
                  <item>
                   <widget class="QWidget" name="header" native="true">
@@ -1280,6 +1280,116 @@ background-color: rgb(232, 232, 232);
                   </widget>
                  </item>
                  <item>
+                  <widget class="QWidget" name="widget_18" native="true">
+                   <layout class="QVBoxLayout" name="verticalLayout_17">
+                    <property name="spacing">
+                     <number>10</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>5</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>5</number>
+                    </property>
+                    <item>
+                     <widget class="QWidget" name="widget_20" native="true">
+                      <layout class="QHBoxLayout" name="horizontalLayout_19">
+                       <property name="spacing">
+                        <number>10</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QComboBox" name="filterAcademicYearDB">
+                         <property name="minimumSize">
+                          <size>
+                           <width>115</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">#filterAcademicYearDB{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#filterAcademicYearDB:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#filterAcademicYearDB::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#filterAcademicYearDB::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="filterSemesterDB">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">#filterSemesterDB{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#filterSemesterDB:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#filterSemesterDB::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#filterSemesterDB::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QScrollArea" name="dashboardScrollArea_2">
                    <property name="minimumSize">
                     <size>
@@ -1299,7 +1409,7 @@ background-color: rgb(255, 255, 255)</string>
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>1000</width>
+                      <width>1206</width>
                       <height>950</height>
                      </rect>
                     </property>
@@ -1325,21 +1435,14 @@ background-color: rgb(255, 255, 255)</string>
                         </size>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">border:1px solid rgb(0, 0, 0);</string>
+                        <string notr="true">border:0px solid rgb(0, 0, 0);</string>
                        </property>
                        <layout class="QGridLayout" name="gridLayout">
                         <item row="0" column="0">
-                         <widget class="QFrame" name="frame_5">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
+                         <widget class="QChartView" name="passFailChartView">
+                          <property name="styleSheet">
+                           <string notr="true">border: 1px solid rgb(184, 184, 184)</string>
                           </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="1">
-                         <widget class="QFrame" name="frame_6">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -1349,7 +1452,111 @@ background-color: rgb(255, 255, 255)</string>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QFrame" name="frame_7">
+                         <widget class="QFrame" name="frame_6">
+                          <property name="styleSheet">
+                           <string notr="true">border: 1px solid rgb(184, 184, 184)</string>
+                          </property>
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_16">
+                           <property name="spacing">
+                            <number>7</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item alignment="Qt::AlignTop">
+                            <widget class="QWidget" name="widget_13" native="true">
+                             <property name="styleSheet">
+                              <string notr="true">border:none</string>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_18">
+                              <item>
+                               <widget class="QComboBox" name="subjectFilterComboBox">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">#subjectFilterComboBox{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#subjectFilterComboBox:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#subjectFilterComboBox::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#subjectFilterComboBox::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                                </property>
+                                <item>
+                                 <property name="text">
+                                  <string>classroom</string>
+                                 </property>
+                                </item>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QChartView" name="boxplotChartView">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>399</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">border:none
+</string>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QChartView" name="comparisonChartView">
+                          <property name="styleSheet">
+                           <string notr="true">border: 1px solid rgb(184, 184, 184)</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -1360,12 +1567,95 @@ background-color: rgb(255, 255, 255)</string>
                         </item>
                         <item row="1" column="1">
                          <widget class="QFrame" name="frame_8">
+                          <property name="styleSheet">
+                           <string notr="true">border: 1px solid rgb(184, 184, 184)</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_18">
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item>
+                            <widget class="QWidget" name="widget_21" native="true">
+                             <property name="styleSheet">
+                              <string notr="true">border: none
+</string>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_19">
+                              <item>
+                               <widget class="QComboBox" name="classFilterComboBox">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">#classFilterComboBox{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#classFilterComboBox:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#classFilterComboBox::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#classFilterComboBox::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QChartView" name="histogramChartView">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>399</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">border:none</string>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
                          </widget>
                         </item>
                        </layout>
@@ -1488,19 +1778,7 @@ border-radius: 0px;</string>
                        <string notr="true">border:none;</string>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_10">
-                       <property name="sizeConstraint">
-                        <enum>QLayout::SetDefaultConstraint</enum>
-                       </property>
-                       <property name="leftMargin">
-                        <number>11</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>5</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>5</number>
-                       </property>
-                       <item alignment="Qt::AlignLeft">
+                       <item>
                         <widget class="QWidget" name="widget_9" native="true">
                          <property name="minimumSize">
                           <size>
@@ -1583,6 +1861,12 @@ background-color: rgb(232, 232, 232);
                               <height>35</height>
                              </size>
                             </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>115</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
                             <property name="styleSheet">
                              <string notr="true">#filterStudentCB{
 border-radius: 8px;
@@ -1643,6 +1927,120 @@ background-color: rgb(227, 227, 227)
                          </layout>
                         </widget>
                        </item>
+                       <item>
+                        <widget class="QWidget" name="frameSearch" native="true">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>600</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">border: 1px solid rgb(148, 148, 148);
+padding: 5px  10px;
+background-color: rgb(230, 230, 230);
+border-radius: 20px;</string>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_5">
+                          <property name="spacing">
+                           <number>11</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>11</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QLineEdit" name="search">
+                            <property name="minimumSize">
+                             <size>
+                              <width>285</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>1000</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">border:none;
+font-size:18px;
+</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                            </property>
+                            <property name="placeholderText">
+                             <string>Search</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item alignment="Qt::AlignLeft">
+                           <widget class="QPushButton" name="searchStdBtn">
+                            <property name="maximumSize">
+                             <size>
+                              <width>46</width>
+                              <height>43</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <weight>50</weight>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#searchStdBtn{
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px;
+border-top-left-radius: 0px;
+border-bottom-left-radius: 0px;
+background-color: rgb(167, 167, 167)
+}
+
+#searchStdBtn:hover{
+background-color: rgb(107, 107, 107)
+}</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset>
+                              <normaloff>../icons/search.svg</normaloff>../icons/search.svg</iconset>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>20</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -1653,7 +2051,7 @@ background-color: rgb(227, 227, 227)
                   <widget class="QWidget" name="widget_11" native="true">
                    <layout class="QHBoxLayout" name="horizontalLayout_2">
                     <property name="spacing">
-                     <number>18</number>
+                     <number>10</number>
                     </property>
                     <property name="topMargin">
                      <number>5</number>
@@ -1683,7 +2081,7 @@ background-color: rgb(227, 227, 227)
                         <widget class="QComboBox" name="filterAcademicYearStudent">
                          <property name="minimumSize">
                           <size>
-                           <width>215</width>
+                           <width>115</width>
                            <height>35</height>
                           </size>
                          </property>
@@ -1707,6 +2105,43 @@ background-color: #a2d2ff
 }
 
 #filterAcademicYearStudent::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="filterSemesterStudent">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">#filterSemesterStudent{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#filterSemesterStudent:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#filterSemesterStudent::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#filterSemesterStudent::drop-down {
 	border: 0px;
     subcontrol-origin: padding;
     subcontrol-position: top right;
@@ -1814,123 +2249,6 @@ background-color: #a2d2ff
                        </item>
                       </layout>
                      </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="frameSearch" native="true">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>755</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border: 1px solid rgb(148, 148, 148);
-padding: 5px  10px;
-background-color: rgb(230, 230, 230);
-border-radius: 20px;</string>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_5">
-                       <property name="spacing">
-                        <number>11</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>11</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QLineEdit" name="search">
-                         <property name="minimumSize">
-                          <size>
-                           <width>285</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>1000</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">border:none;
-font-size:18px;
-</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                         </property>
-                         <property name="placeholderText">
-                          <string>Search</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item alignment="Qt::AlignLeft">
-                        <widget class="QPushButton" name="searchStdBtn">
-                         <property name="maximumSize">
-                          <size>
-                           <width>46</width>
-                           <height>41</height>
-                          </size>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <weight>50</weight>
-                           <bold>false</bold>
-                          </font>
-                         </property>
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">#searchStdBtn{
-border-top-right-radius: 20px;
-border-bottom-right-radius: 20px;
-border-top-left-radius: 0px;
-border-bottom-left-radius: 0px;
-background-color: rgb(167, 167, 167)
-}
-
-#searchStdBtn:hover{
-background-color: rgb(107, 107, 107)
-}</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>../icons/search.svg</normaloff>../icons/search.svg</iconset>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>20</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="widget_13" native="true"/>
                     </item>
                    </layout>
                   </widget>
@@ -5289,19 +5607,7 @@ border-radius: 0px;</string>
                        <string notr="true">border:none;</string>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_13">
-                       <property name="sizeConstraint">
-                        <enum>QLayout::SetDefaultConstraint</enum>
-                       </property>
-                       <property name="leftMargin">
-                        <number>11</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>5</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>5</number>
-                       </property>
-                       <item alignment="Qt::AlignLeft">
+                       <item>
                         <widget class="QWidget" name="widget_15" native="true">
                          <property name="minimumSize">
                           <size>
@@ -5408,6 +5714,12 @@ background-color: rgb(232, 232, 232);
                               <height>35</height>
                              </size>
                             </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>115</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
                             <property name="styleSheet">
                              <string notr="true">#filterScoreCB{
 border-radius: 8px;
@@ -5463,6 +5775,120 @@ background-color: rgb(227, 227, 227)
                               <string>sort Z - A</string>
                              </property>
                             </item>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QWidget" name="frameSearch_2" native="true">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>600</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">border: 1px solid rgb(148, 148, 148);
+padding: 5px  10px;
+background-color: rgb(230, 230, 230);
+border-radius: 20px;</string>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_17">
+                          <property name="spacing">
+                           <number>11</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>11</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QLineEdit" name="searchName">
+                            <property name="minimumSize">
+                             <size>
+                              <width>255</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>1000</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">border:none;
+font-size:18px;
+</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                            </property>
+                            <property name="placeholderText">
+                             <string>Search</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item alignment="Qt::AlignLeft">
+                           <widget class="QPushButton" name="searchStdBtn_2">
+                            <property name="maximumSize">
+                             <size>
+                              <width>46</width>
+                              <height>43</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <weight>50</weight>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">#searchStdBtn_2{
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px;
+border-top-left-radius: 0px;
+border-bottom-left-radius: 0px;
+background-color: rgb(167, 167, 167)
+}
+
+#searchStdBtn_2:hover{
+background-color: rgb(107, 107, 107)
+}</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset>
+                              <normaloff>../icons/search.svg</normaloff>../icons/search.svg</iconset>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>20</width>
+                              <height>20</height>
+                             </size>
+                            </property>
                            </widget>
                           </item>
                          </layout>
@@ -5548,6 +5974,54 @@ background-color: #a2d2ff
                          <item>
                           <property name="text">
                            <string>Academic year</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="filterSemesterScore">
+                         <property name="minimumSize">
+                          <size>
+                           <width>115</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>190</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">#filterSemesterScore{
+border-radius: 8px;
+font-size: 16px;
+padding-left: 10px;
+border: 0px solid rgb(99, 99, 99);
+background-color: #a2d2ff
+}
+
+#filterSemesterScore:hover{
+	background-color: rgb(206, 206, 206);
+}
+
+#filterSemesterScore::down-arrow {
+    image: url(:/UI/icons/chevron-down.svg);
+    width: 14px;
+    height: 14px;
+}
+
+#filterSemesterScore::drop-down {
+	border: 0px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* chiều rộng của nút mũi tên */
+	padding-right: 2px;
+}</string>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>Fall sémester</string>
                           </property>
                          </item>
                         </widget>
@@ -5689,120 +6163,6 @@ background-color: #a2d2ff
                          </property>
                          <property name="indent">
                           <number>-1</number>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="frameSearch_2" native="true">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>600</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border: 1px solid rgb(148, 148, 148);
-padding: 5px  10px;
-background-color: rgb(230, 230, 230);
-border-radius: 20px;</string>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_17">
-                       <property name="spacing">
-                        <number>11</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>11</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QLineEdit" name="searchName">
-                         <property name="minimumSize">
-                          <size>
-                           <width>255</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>1000</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">border:none;
-font-size:18px;
-</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                         </property>
-                         <property name="placeholderText">
-                          <string>Search</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item alignment="Qt::AlignLeft">
-                        <widget class="QPushButton" name="searchStdBtn_2">
-                         <property name="maximumSize">
-                          <size>
-                           <width>46</width>
-                           <height>41</height>
-                          </size>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <weight>50</weight>
-                           <bold>false</bold>
-                          </font>
-                         </property>
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">#searchStdBtn_2{
-border-top-right-radius: 20px;
-border-bottom-right-radius: 20px;
-border-top-left-radius: 0px;
-border-bottom-left-radius: 0px;
-background-color: rgb(167, 167, 167)
-}
-
-#searchStdBtn_2:hover{
-background-color: rgb(107, 107, 107)
-}</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>../icons/search.svg</normaloff>../icons/search.svg</iconset>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>20</width>
-                           <height>20</height>
-                          </size>
                          </property>
                         </widget>
                        </item>
@@ -9188,6 +9548,14 @@ background-color: rgb(130, 130, 130);
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QFrame</extends>
+   <header location="global">PyQt5.QtChart</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../resources/resources.qrc"/>
  </resources>

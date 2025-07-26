@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QDate, Qt, QEvent, QObject
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QMessageBox
 
-from src.models.student.student_model import get_students_by_criteria, get_all_academic_years
+from src.models.student.student_model import get_assigned_students_for_teacher, get_all_academic_years, get_all_semesters
 from src.components.student_filters import setup_faculty_filter, setup_classroom_filter
 from src.components.filter_utils import filter_students_by_keyword, sort_students_by_name
 from src.constants.table_headers import STUDENT_TABLE_HEADERS
@@ -21,10 +21,12 @@ class StudentListController(QObject):
         self.filterFacultyStudent = self.parent.filterFacultyStudent
         self.filterClassroomStudent = self.parent.filterClassroomStudent
         self.filterAcademicYearStudent = self.parent.filterAcademicYearStudent
+        self.filterSemesterStudent = self.parent.filterSemesterStudent
 
         self._setup_table_behavior()
         self._connect_signals()
         self._populate_academic_year_filter()
+        self._populate_semester_filter()
 
         self.searchInput = self.parent.search
         self.searchButton = self.parent.searchStdBtn
@@ -55,6 +57,7 @@ class StudentListController(QObject):
         self.filterFacultyStudent.currentIndexChanged.connect(self.on_faculty_changed)
         self.filterClassroomStudent.currentIndexChanged.connect(self.update_student_table)
         self.filterAcademicYearStudent.currentIndexChanged.connect(self.update_student_table)
+        self.filterSemesterStudent.currentIndexChanged.connect(self.update_student_table)
 
         self.parent.search.textChanged.connect(self.update_student_table)
         self.parent.filterStudentCB.currentIndexChanged.connect(self.update_student_table)
@@ -91,6 +94,15 @@ class StudentListController(QObject):
             # Quan trọng: Hiển thị text dễ đọc, nhưng lưu trữ ID để dùng cho truy vấn
             self.filterAcademicYearStudent.addItem(display_text, userData=year['academic_year_id'])
 
+    def _populate_semester_filter(self):
+        self.filterSemesterStudent.clear()
+        all_semesters = get_all_semesters()
+        if not all_semesters:
+            return
+
+        for semester in all_semesters:
+            self.filterSemesterStudent.addItem(semester['semester_name'], userData=semester['semester_id'])
+
     def setup_faculty_filter(self):
         print("🧪 Thiết lập bộ lọc KHOA...")
         setup_faculty_filter(self.filterFacultyStudent, self._teacher_context, block_signals=True)
@@ -116,27 +128,60 @@ class StudentListController(QObject):
         if self._is_loading:
             return
 
+        if not self._teacher_context:
+            print("  -> Info: No teacher context available. Clearing table.")
+            self.populate_table([])
+            return
+
+        print("\n🔄 Updating student list based on assignments...")
+
         print("⚙️ update_student_table() -> Cập nhật BẢNG DỮ LIỆU")
+        teacher_id = self._teacher_context.get('teacher_id')
         faculty_id = self.filterFacultyStudent.currentData()
         class_id = self.filterClassroomStudent.currentData()
         academic_year_id = self.filterAcademicYearStudent.currentData()
+        semester_id = self.filterSemesterStudent.currentData()
         keyword = self.parent.search.text().strip().lower()
         sort_order = self.parent.filterStudentCB.currentText()
         print(f"--> Filtering with Faculty ID: {faculty_id}, Class ID: {class_id}, Keyword: '{keyword}'")
 
-        filtered_list = []
-        if self._teacher_context:
-            allowed_classes = self._teacher_context.get('classes', [])
-            if allowed_classes:
-                allowed_class_ids = [c[0] for c in allowed_classes]
+        # 2. Kiểm tra các giá trị bắt buộc
+        # Giáo viên phải được phân công trong một năm học và học kỳ cụ thể
+        if None in [teacher_id, academic_year_id, semester_id]:
+            print("  -> Info: Teacher, Academic Year, or Semester not selected. Clearing table.")
+            self.populate_table([])
+            return
 
-                # Gọi hàm mới với các tham số lọc
-                filtered_list = get_students_by_criteria(
-                    allowed_class_ids=allowed_class_ids,
-                    faculty_id=faculty_id,
-                    class_id=class_id,
-                    academic_year_id=academic_year_id
-                )
+        print(f"--> Filtering with: AY_ID={academic_year_id}, Sem_ID={semester_id}, Class_ID={class_id}")
+
+        # filtered_list = []
+        # if self._teacher_context:
+        #     allowed_classes = self._teacher_context.get('classes', [])
+        #     if allowed_classes:
+        #         allowed_class_ids = [c[0] for c in allowed_classes]
+        #
+        #         # Gọi hàm mới với các tham số lọc
+        #         if None in [teacher_id, academic_year_id, semester_id]:
+        #             self.populate_table([])
+        #             return
+        #
+        #             # Gọi hàm model mới
+        #         student_list = get_assigned_students_for_teacher(
+        #             teacher_id=teacher_id,
+        #             academic_year_id=academic_year_id,
+        #             semester_id=semester_id,
+        #             class_id=class_id,
+        #             faculty_id=faculty_id
+        #         )
+
+        # 3. Gọi hàm model mới để lấy danh sách sinh viên được phân công
+        student_list = get_assigned_students_for_teacher(
+            teacher_id=teacher_id,
+            academic_year_id=academic_year_id,
+            semester_id=semester_id,
+            class_id=class_id,
+            faculty_id=faculty_id
+        )
 
         # filtered_list =
         # if faculty_id != -1:
@@ -145,8 +190,10 @@ class StudentListController(QObject):
         #     filtered_list = [s for s in filtered_list if s.get('class_id') == class_id]
         # if academic_year_id != -1:
         #     filtered_list = [s for s in filtered_list if s.get('academic_year_id') == academic_year_id]
-
-        filtered_list = filter_students_by_keyword(filtered_list, keyword)
+        filtered_list = student_list
+        # filtered_list = filter_students_by_keyword(filtered_list, keyword)
+        if keyword:
+            filtered_list = filter_students_by_keyword(filtered_list, keyword)
 
         if sort_order in ["sort A - Z", "sort Z - A"]:
             filtered_list = sort_students_by_name(filtered_list, sort_order)

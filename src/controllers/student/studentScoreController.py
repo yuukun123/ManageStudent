@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QMessageBox, QHeader
 from src.constants.form_mode import FormMode
 from src.windows.student.function_window import open_add_edit_student_score
 from src.models.student.student_model import (
-    get_student_scores_for_subject, get_subjects_by_teacher_and_classes, get_all_academic_years, get_class_subject_id, get_start_year_from_academic_id
+    get_student_scores_for_subject, get_subjects_by_teacher_and_classes, get_all_academic_years, get_class_subject_id, get_start_year_from_academic_id, get_all_semesters
 )
 from src.components.student_filters import setup_faculty_filter, setup_classroom_filter
 from src.components.filter_utils import filter_students_by_keyword, sort_students_by_name
@@ -23,6 +23,7 @@ class StudentScoreController(QObject):
         self.filterFacultyScore = self.parent.filterFacultyScore
         self.filterClassroomScore = self.parent.filterClassroomScore
         self.filterAcademicYearScore = self.parent.filterAcademicYearScore
+        self.filterSemesterScore = self.parent.filterSemesterScore
         # Đây là một QLabel, không phải ComboBox
         self.subjectLabel = self.parent.filterSubjectScore
         self.searchInput = self.parent.searchName
@@ -41,6 +42,7 @@ class StudentScoreController(QObject):
         self._setup_table_behavior()
         self._connect_signals()
         self._populate_academic_year_filter()
+        self._populate_semester_filter()
 
     def _setup_table_behavior(self):
         self.scoresList.setSelectionBehavior(QTableWidget.SelectRows)
@@ -66,6 +68,7 @@ class StudentScoreController(QObject):
         self.filterFacultyScore.currentIndexChanged.connect(self.on_faculty_filter_changed)
         self.filterClassroomScore.currentIndexChanged.connect(self.update_student_table)
         self.filterAcademicYearScore.currentIndexChanged.connect(self.update_student_table)
+        self.filterSemesterScore.currentIndexChanged.connect(self.update_student_table)
         # Các tín hiệu khác vẫn giữ nguyên
         self.searchInput.textChanged.connect(self.update_student_table)
         self.searchButton.clicked.connect(self.update_student_table)
@@ -102,6 +105,19 @@ class StudentScoreController(QObject):
             # Quan trọng: Hiển thị text dễ đọc, nhưng lưu trữ ID để dùng cho truy vấn
             self.filterAcademicYearScore.addItem(display_text, userData=year['academic_year_id'])
 
+    def _populate_semester_filter(self):
+        """Điền dữ liệu vào ComboBox lọc học kiềm."""
+        self.filterSemesterScore.clear()
+        all_semesters = get_all_semesters()
+        if not all_semesters:
+            return
+
+        for semester in all_semesters:
+            # display_text = f"{semester['start_semester']} - {semester['end_semester']}"
+            # Quan trọng: Hiển thị text dễ đọc, nhưng lưu trữ ID để dùng cho truy vấn
+            # self.filterSemesterScore.addItem(display_text, userData=semester['semester_id'])
+            self.filterSemesterScore.addItem(semester['semester_name'], userData=semester['semester_id'])
+
     def setup_faculty_filter(self):
         """Điền dữ liệu vào ComboBox Khoa."""
         print("  -> 1. Populating Faculty filter...")
@@ -134,16 +150,17 @@ class StudentScoreController(QObject):
 
             teacher_id = self._teacher_context.get('teacher_id')
             class_id = self.filterClassroomScore.currentData()
+            academic_year_id = self.filterAcademicYearScore.currentData()
+            semester_id = self.filterSemesterScore.currentData()
 
             # Thêm một bước kiểm tra an toàn
-            if class_id is None or class_id == -1:
-                print("  -> Info: No valid class selected. Clearing table.")
+            if None in [class_id, academic_year_id, semester_id] or class_id == -1:
                 self.populate_table([])
-                self.subjectLabel.setText("Please select a class")
+                self.subjectLabel.setText("Please select all filters")
                 return
 
             # Logic tự động tìm môn học (giữ nguyên)
-            subjects = get_subjects_by_teacher_and_classes(teacher_id, [class_id])
+            subjects = get_subjects_by_teacher_and_classes(teacher_id, [class_id], academic_year_id, semester_id)
             if not subjects:
                 print(f"  -> Info: No subjects for class {class_id}.")
                 self.populate_table([])
@@ -155,16 +172,8 @@ class StudentScoreController(QObject):
             subject_id_to_query = first_subject["subject_id"]
             semester_id_from_db= first_subject["semester_id"]
             subject_name_to_display = first_subject["subject_name"]
-
             self.current_subject_id = subject_id_to_query
-
             self.subjectLabel.setText(f"{subject_name_to_display}")
-
-            # Lấy năm học và truy vấn điểm (giữ nguyên)
-            academic_year_id = self.filterAcademicYearScore.currentData()
-            if not academic_year_id:
-                self.current_subject_id = None
-                return
 
             self.current_class_subject_id = get_class_subject_id(
                 class_id, subject_id_to_query, semester_id_from_db

@@ -1,6 +1,7 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from src.controllers.buttonController import buttonController
+from src.controllers.dashboard.dashboardController import dashboardController
 from src.controllers.student.studentListController import StudentListController
 from src.controllers.student.studentScoreController import StudentScoreController
 from src.models.user_model import get_user_by_username, get_teacher_context
@@ -40,6 +41,8 @@ class MainWindow(QMainWindow, MoveableWindow):
         index_map = {btn: i for i, btn in enumerate(buttons)}
         self.menu_nav = MenuNavigator(self.stackedWidget, buttons, index_map, default_button=self.dashboard)
 
+        self.dashboardController = dashboardController(parent=self)
+
         self.studentListController = StudentListController(
             self.studentList,
             parent=self,
@@ -56,6 +59,12 @@ class MainWindow(QMainWindow, MoveableWindow):
         self.editScoreBtn.clicked.connect(self.studentScoreController.handle_edit_button_clicked)
 
         self.stackedWidget.currentChanged.connect(self.on_tab_changed)
+
+        # Chủ động tải Dashboard lần đầu tiên nếu nó là tab mặc định
+        if self.stackedWidget.currentWidget() == self.Dashboard_page:
+            self.on_tab_changed(self.stackedWidget.currentIndex())
+
+        self.on_tab_changed(self.stackedWidget.currentIndex())
 
     # THÊM HÀM MỚI NÀY
     def _load_user_context(self):
@@ -102,14 +111,57 @@ class MainWindow(QMainWindow, MoveableWindow):
     def on_tab_changed(self, index):
         current_widget = self.stackedWidget.widget(index)
 
-        if current_widget == self.Student_page:
+        # Mặc định một tiêu đề, hoặc để trống
+        new_title = "Student Management System"
+
+        if current_widget == self.Dashboard_page:
+            # Đặt lại tiêu đề
+            new_title = "Dashboard"
+
+            print("📊 Đã chuyển đến trang Dashboard")
+            if not self.dashboardController._initialized_for_user:
+                self.dashboardController.setup_for_user(self.teacher_context)
+
+        elif current_widget == self.Student_page:
+            # Đặt lại tiêu đề
+            new_title = "Student List"  # Hoặc "Danh sách Sinh viên"
+
             print("📘 Đã chuyển đến trang Student List")
             if not self.studentListController._initialized_for_user:
                 self.studentListController.setup_for_user(self.teacher_context)
 
         elif current_widget == self.Scores_page:
+            # Đặt lại tiêu đề
+            new_title = "Score Management"  # Hoặc "Quản lý Điểm"
+
             print("📝 Đã chuyển đến trang Scores")
             if not self.studentScoreController._initialized_for_user:
                 self.studentScoreController.setup_for_user(self.teacher_context)
+
+        # elif current_widget == self.Classroom_page:
+        #     # Đặt lại tiêu đề
+        #     new_title = "Classroom Management"  # Hoặc "Quản lý Lớp"
+        #
+        #     print("📝 Đã chuyển đến trang Classroom")
+        #     if not self.classroomController._initialized_for_user:
+        #         self.studentScoreController.setup_for_user(self.teacher_context)
+        #
+        # elif current_widget == self.Subject_page:
+        #     # Đặt lại tiêu đề
+        #     new_title = "Subject Management"  # Hoặc "Quản lý Môn học"
+        #
+        #     print("📝 Đã chuyển đến trang Subject")
+        #     if not self.subjectController._initialized_for_user:
+        #         self.subjectController.setup_for_user(self.teacher_context)
+        #
+        # elif current_widget == self.Notification_page:
+        #     # Đặt lại tiêu đề
+        #     new_title = "Notification Management"  # Hoặc "Quản lý Thống báo"
+        #
+        #     print("📝 Đã chuyển đến trang Notification")
+        #     if not self.notificationController._initialized_for_user:
+        #         self.notificationController.setup_for_user(self.teacher_context)
+
+        self.header_DBD.setText(new_title)
 
 

@@ -62,88 +62,149 @@ def get_all_students():
             conn.close()
 
 
-# Trong student_model.py
+# Thêm vào student_model.py
 
-def get_students_by_criteria(
-        allowed_class_ids: list,
-        faculty_id: int = None,
-        class_id: int = None,
-        academic_year_id: int = None
-):
+def get_assigned_students_for_teacher(teacher_id, academic_year_id, semester_id, class_id=None, faculty_id=None):
     """
-    Lấy danh sách sinh viên dựa trên nhiều tiêu chí lọc từ cơ sở dữ liệu.
-    Hàm này được tối ưu để chỉ truy vấn dữ liệu cần thiết.
-
-    Args:
-        allowed_class_ids (list): Danh sách ID các lớp mà người dùng được phép xem. Đây là tham số bắt buộc.
-        faculty_id (int, optional): ID của khoa để lọc. Mặc định là None.
-        class_id (int, optional): ID của lớp cụ thể để lọc. Mặc định là None.
-        academic_year_id (int, optional): ID của năm học để lọc. Mặc định là None.
-
-    Returns:
-        list: Một danh sách các dictionary, mỗi dictionary chứa thông tin một sinh viên.
+    Lấy danh sách sinh viên thuộc các lớp mà giáo viên được phân công dạy
+    trong một năm học và học kỳ cụ thể.
     """
-    # Điều kiện tiên quyết: phải có danh sách lớp được phép
-    if not allowed_class_ids:
-        return []
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    params = [teacher_id, academic_year_id, semester_id]
+
+    # Bắt đầu với các join cơ bản
+    query = """
+        SELECT DISTINCT
+            s.student_id, s.full_name, s.gender, s.date_of_birth, s.email, s.phone_number,
+            s.address, f.faculty_id, f.faculty_name, m.major_name, c.class_id, c.class_name,
+            (ay_student.start_year || ' - ' || ay_student.end_year) AS academic_year,
+            s.enrollment_year, sem.semester_name, s.gpa, s.accumulated_credits,
+            s.attendance_rate, s.scholarship_info
+        FROM 
+            teacher_assignments ta
+        JOIN 
+            students s ON s.class_id = ta.class_id
+        JOIN 
+            semesters sem ON s.semester = sem.semester_id
+        JOIN 
+            classes c ON s.class_id = c.class_id
+        JOIN
+            faculties f ON c.faculty_id = f.faculty_id
+        JOIN
+            majors m ON s.major_id = m.major_id
+        JOIN 
+            academic_years ay_student ON s.academic_year_id = ay_student.academic_year_id -- Năm tuyển sinh của SV
+        WHERE
+            ta.teacher_id = ? 
+            AND ta.academic_year_id = ?
+            AND ta.semester_id = ?
+    """
+
+    # Thêm bộ lọc động (tùy chọn)
+    if class_id and class_id != -1:
+        query += " AND ta.class_id = ?"
+        params.append(class_id)
+
+    if faculty_id and faculty_id != -1:
+        query += " AND c.faculty_id = ?"
+        params.append(faculty_id)
+
+    query += " ORDER BY s.full_name;"
 
     try:
-        conn = sqlite3.connect(DB_PATH)
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-
-        # Bắt đầu xây dựng câu truy vấn và danh sách tham số
-        params = list(allowed_class_ids)
-
-        # Phần WHERE cơ bản, luôn luôn lọc theo các lớp được phép
-        where_clauses = [f"s.class_id IN ({','.join('?' for _ in allowed_class_ids)})"]
-
-        # Thêm các điều kiện lọc động nếu chúng được cung cấp
-        if faculty_id and faculty_id != -1:
-            where_clauses.append("c.faculty_id = ?")
-            params.append(faculty_id)
-
-        # Lưu ý: class_id cũng là một bộ lọc con trong các lớp được phép
-        if class_id and class_id != -1:
-            where_clauses.append("s.class_id = ?")
-            params.append(class_id)
-
-        if academic_year_id and academic_year_id != -1:
-            where_clauses.append("s.academic_year_id = ?")
-            params.append(academic_year_id)
-
-        # Ghép các mệnh đề WHERE lại với nhau
-        where_string = " AND ".join(where_clauses)
-
-        # Xây dựng câu truy vấn cuối cùng
-        query = f"""
-            SELECT
-                s.student_id, s.full_name, s.gender, s.date_of_birth, s.email, s.phone_number,
-                s.address, f.faculty_id, f.faculty_name, m.major_name, c.class_id, c.class_name,
-                s.academic_year_id, -- Thêm cột này để có thể lọc
-                (ay.start_year || ' - ' || ay.end_year) as academic_year,
-                s.enrollment_year, sem.semester_name, s.gpa, s.accumulated_credits,
-                s.attendance_rate, s.scholarship_info
-            FROM students s
-            LEFT JOIN classes c ON s.class_id = c.class_id
-            LEFT JOIN majors m ON s.major_id = m.major_id
-            LEFT JOIN faculties f ON c.faculty_id = f.faculty_id
-            LEFT JOIN academic_years ay ON s.academic_year_id = ay.academic_year_id
-            LEFT JOIN semesters sem ON s.semester = sem.semester_id
-            WHERE {where_string}
-        """
-
         cursor.execute(query, tuple(params))
         students = [dict(row) for row in cursor.fetchall()]
-
     except sqlite3.Error as e:
-        print(f"Database error in get_students_by_criteria: {e}")
+        print(f"Database error in get_assigned_students_for_teacher: {e}")
         students = []
     finally:
-        if 'conn' in locals() and conn:
-            conn.close()
+        conn.close()
 
     return students
+
+# def get_students_by_criteria(
+#         allowed_class_ids: list,
+#         faculty_id: int = None,
+#         class_id: int = None,
+#         academic_year_id: int = None
+# ):
+#     """
+#     Lấy danh sách sinh viên dựa trên nhiều tiêu chí lọc từ cơ sở dữ liệu.
+#     Hàm này được tối ưu để chỉ truy vấn dữ liệu cần thiết.
+#
+#     Args:
+#         allowed_class_ids (list): Danh sách ID các lớp mà người dùng được phép xem. Đây là tham số bắt buộc.
+#         faculty_id (int, optional): ID của khoa để lọc. Mặc định là None.
+#         class_id (int, optional): ID của lớp cụ thể để lọc. Mặc định là None.
+#         academic_year_id (int, optional): ID của năm học để lọc. Mặc định là None.
+#
+#     Returns:
+#         list: Một danh sách các dictionary, mỗi dictionary chứa thông tin một sinh viên.
+#     """
+#     # Điều kiện tiên quyết: phải có danh sách lớp được phép
+#     if not allowed_class_ids:
+#         return []
+#
+#     try:
+#         conn = sqlite3.connect(DB_PATH)
+#         conn.row_factory = sqlite3.Row
+#         cursor = conn.cursor()
+#
+#         # Bắt đầu xây dựng câu truy vấn và danh sách tham số
+#         params = list(allowed_class_ids)
+#
+#         # Phần WHERE cơ bản, luôn luôn lọc theo các lớp được phép
+#         where_clauses = [f"s.class_id IN ({','.join('?' for _ in allowed_class_ids)})"]
+#
+#         # Thêm các điều kiện lọc động nếu chúng được cung cấp
+#         if faculty_id and faculty_id != -1:
+#             where_clauses.append("c.faculty_id = ?")
+#             params.append(faculty_id)
+#
+#         # Lưu ý: class_id cũng là một bộ lọc con trong các lớp được phép
+#         if class_id and class_id != -1:
+#             where_clauses.append("s.class_id = ?")
+#             params.append(class_id)
+#
+#         if academic_year_id and academic_year_id != -1:
+#             where_clauses.append("s.academic_year_id = ?")
+#             params.append(academic_year_id)
+#
+#         # Ghép các mệnh đề WHERE lại với nhau
+#         where_string = " AND ".join(where_clauses)
+#
+#         # Xây dựng câu truy vấn cuối cùng
+#         query = f"""
+#             SELECT
+#                 s.student_id, s.full_name, s.gender, s.date_of_birth, s.email, s.phone_number,
+#                 s.address, f.faculty_id, f.faculty_name, m.major_name, c.class_id, c.class_name,
+#                 s.academic_year_id, -- Thêm cột này để có thể lọc
+#                 (ay.start_year || ' - ' || ay.end_year) as academic_year,
+#                 s.enrollment_year, sem.semester_name, s.gpa, s.accumulated_credits,
+#                 s.attendance_rate, s.scholarship_info
+#             FROM students s
+#             LEFT JOIN classes c ON s.class_id = c.class_id
+#             LEFT JOIN majors m ON s.major_id = m.major_id
+#             LEFT JOIN faculties f ON c.faculty_id = f.faculty_id
+#             LEFT JOIN academic_years ay ON s.academic_year_id = ay.academic_year_id
+#             LEFT JOIN semesters sem ON s.semester = sem.semester_id
+#             WHERE {where_string}
+#         """
+#
+#         cursor.execute(query, tuple(params))
+#         students = [dict(row) for row in cursor.fetchall()]
+#
+#     except sqlite3.Error as e:
+#         print(f"Database error in get_students_by_criteria: {e}")
+#         students = []
+#     finally:
+#         if 'conn' in locals() and conn:
+#             conn.close()
+#
+#     return students
 
 def get_student_by_id(student_id):
     conn = sqlite3.connect(DB_PATH)
@@ -306,7 +367,7 @@ def get_student_scores_for_subject(
             teacher_assignments ta
         JOIN 
             students s ON s.class_id = ta.class_id
-                       AND s.academic_year_id = ta.academic_year_id -- <<< THÊM DÒNG NÀY
+                       --AND s.academic_year_id = ta.academic_year_id -- <<< THÊM DÒNG NÀY
         JOIN 
             class_subjects cs ON cs.class_id = ta.class_id 
                              AND cs.subject_id = ta.subject_id 
@@ -344,8 +405,46 @@ def get_student_scores_for_subject(
 
     return rows
 
+def get_all_classes():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM classes")
+    rows = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return rows
+
+def get_all_subjects():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM subjects")
+    rows = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return rows
+
+def get_all_semesters():
+    """Lấy tất cả các học kỳ từ bảng semesters."""
+    conn = None
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        # Sắp xếp theo ID để đảm bảo thứ tự nhất quán (HK1, HK2, HK Hè)
+        cursor.execute("SELECT * FROM semesters ORDER BY semester_id")
+
+        semesters = [dict(row) for row in cursor.fetchall()]
+        return semesters
+    except sqlite3.Error as e:
+        print(f"Database error in get_all_semesters: {e}")
+        return []
+    finally:
+        if conn:
+            conn.close()
+
 # Sửa hàm này trước
-def get_subjects_by_teacher_and_classes(teacher_id, class_ids: list):
+def get_subjects_by_teacher_and_classes(teacher_id, class_ids, academic_year_id, semester_id):
     """
     Lấy danh sách các môn học (ID và tên) mà một giáo viên dạy
     cho một danh sách các lớp.
@@ -362,10 +461,13 @@ def get_subjects_by_teacher_and_classes(teacher_id, class_ids: list):
         SELECT DISTINCT s.subject_id, s.subject_name, ta.semester_id
         FROM teacher_assignments ta
         JOIN subjects s ON ta.subject_id = s.subject_id
-        WHERE ta.teacher_id = ? AND ta.class_id IN ({placeholders})
+        WHERE ta.teacher_id = ? 
+        AND ta.class_id IN ({placeholders})
+        AND ta.academic_year_id = ?  -- Lọc theo năm học
+        AND ta.semester_id = ?       -- Lọc theo học kỳ
     """
 
-    params = (teacher_id,) + tuple(class_ids)
+    params = (teacher_id, *class_ids, academic_year_id, semester_id)
     cursor.execute(query, params)
 
     subjects = [dict(row) for row in cursor.fetchall()]
@@ -540,3 +642,166 @@ def update_score(data):
         print(f"❌ Lỗi CSDL khi cập nhật điểm: {e}")
     finally:
         conn.close()
+
+def get_subjects_for_teacher_in_semester(teacher_id, academic_year_id, semester_id):
+    """
+    Lấy danh sách các môn học (ID và tên) mà một giáo viên dạy
+    cho một danh sách các lớp.
+    """
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row  # Dùng Row Factory cho dễ
+    cursor = conn.cursor()
+
+    query = f"""
+        SELECT DISTINCT s.subject_id, s.subject_name, ta.semester_id
+        FROM teacher_assignments ta
+        JOIN subjects s ON ta.subject_id = s.subject_id
+        WHERE ta.teacher_id = ? 
+        AND ta.academic_year_id = ?  -- Lọc theo năm học
+        AND ta.semester_id = ?       -- Lọc theo học kỳ
+    """
+
+    params = (teacher_id, academic_year_id, semester_id)
+    cursor.execute(query, params)
+
+    subjects = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return subjects
+
+
+def get_classes_for_subject_in_semester(teacher_id, academic_year_id, semester_id, subject_id):
+    """
+    Lấy danh sách các lớp (class_name) và ID môn học của lớp (class_subject_id)
+    mà một giáo viên dạy một môn cụ thể trong một học kỳ.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    # --- ĐÂY LÀ CÂU TRUY VẤN CẦN SỬA ---
+    query = """
+        SELECT DISTINCT
+            c.class_name,
+            cs.class_subject_id -- <<< DÒNG QUAN TRỌNG NHẤT
+        FROM 
+            teacher_assignments ta
+        JOIN 
+            classes c ON ta.class_id = c.class_id
+        JOIN
+            class_subjects cs ON ta.class_id = cs.class_id 
+                             AND ta.subject_id = cs.subject_id 
+                             AND ta.semester_id = cs.semester_id
+        WHERE
+            ta.teacher_id = ? 
+            AND ta.academic_year_id = ?
+            AND ta.semester_id = ?
+            AND ta.subject_id = ?
+        ORDER BY
+            c.class_name;
+    """
+    # --- KẾT THÚC SỬA LỖI ---
+
+    params = (teacher_id, academic_year_id, semester_id, subject_id)
+
+    try:
+        cursor.execute(query, params)
+        rows = [dict(row) for row in cursor.fetchall()]
+    except sqlite3.Error as e:
+        print(f"Database error in get_classes_for_subject_in_semester: {e}")
+        rows = []
+    finally:
+        conn.close()
+
+    return rows
+
+# lấy điểm cuối kỳ các lớp
+def get_scores_for_boxplot(teacher_id, academic_year_id, semester_id, subject_id):
+    """Lấy điểm cuối kỳ của tất cả các lớp cho một môn học cụ thể."""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    query = """
+        SELECT c.class_name, sc.final_score
+        FROM teacher_assignments ta
+        JOIN classes c ON ta.class_id = c.class_id
+        JOIN class_subjects cs ON ta.class_id = cs.class_id AND ta.subject_id = cs.subject_id AND ta.semester_id = cs.semester_id
+        LEFT JOIN scores sc ON cs.class_subject_id = sc.class_subject_id AND sc.year = (SELECT start_year FROM academic_years WHERE academic_year_id = ta.academic_year_id)
+        WHERE ta.teacher_id = ? AND ta.academic_year_id = ? AND ta.semester_id = ? AND ta.subject_id = ?
+          AND sc.final_score IS NOT NULL;
+    """
+    params = (teacher_id, academic_year_id, semester_id, subject_id)
+    cursor.execute(query, params)
+    rows = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return rows
+
+# So sánh nhanh tỉ lệ sinh viên đạt yêu cầu giữa tất cả các lớp học phần.
+def get_pass_fail_stats(teacher_id, academic_year_id, semester_id):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    query = """
+        SELECT
+            c.class_name,
+            COUNT(sc.score_id) AS total_students,
+            SUM(CASE WHEN sc.final_score >= 5.0 THEN 1 ELSE 0 END) AS passed_students
+        FROM teacher_assignments ta
+        JOIN classes c ON ta.class_id = c.class_id
+        JOIN class_subjects cs ON ta.class_id = cs.class_id AND ta.subject_id = cs.subject_id AND ta.semester_id = cs.semester_id
+        LEFT JOIN scores sc ON cs.class_subject_id = sc.class_subject_id AND sc.year = (SELECT start_year FROM academic_years WHERE academic_year_id = ta.academic_year_id)
+        WHERE ta.teacher_id = ? AND ta.academic_year_id = ? AND ta.semester_id = ?
+        GROUP BY c.class_name
+        HAVING total_students > 0;
+    """
+    params = (teacher_id, academic_year_id, semester_id)
+    cursor.execute(query, params)
+    rows = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return rows
+
+# Xem chi tiết phân phối điểm cuối kỳ của một lớp học phần cụ thể.
+def get_scores_for_histogram(class_subject_id, year):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    query = "SELECT final_score FROM scores WHERE class_subject_id = ? AND year = ? AND final_score IS NOT NULL;"
+    params = (class_subject_id, year)
+    cursor.execute(query, params)
+    # Trả về một list các con số
+    scores = [row[0] for row in cursor.fetchall()]
+    conn.close()
+    return scores
+
+# So sánh điểm quá trình trung bình và điểm cuối kỳ trung bình của tất cả các lớp.
+def get_avg_scores_by_class(teacher_id, academic_year_id, semester_id):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    query = """
+           SELECT 
+               c.class_name, 
+               AVG(sc.process_score) as avg_process_score,
+               AVG(sc.final_score) as avg_final_score
+           FROM 
+               teacher_assignments ta
+           JOIN 
+               classes c ON ta.class_id = c.class_id
+           JOIN 
+               class_subjects cs ON ta.class_id = cs.class_id 
+                                AND ta.subject_id = cs.subject_id 
+                                AND ta.semester_id = cs.semester_id
+           LEFT JOIN 
+               scores sc ON cs.class_subject_id = sc.class_subject_id
+                         AND sc.year = (SELECT start_year FROM academic_years WHERE academic_year_id = ta.academic_year_id)
+           WHERE 
+               ta.teacher_id = ? 
+               AND ta.academic_year_id = ? 
+               AND ta.semester_id = ?
+           GROUP BY 
+               c.class_name;
+       """
+    params = (teacher_id, academic_year_id, semester_id)
+    cursor.execute(query, params)
+    rows = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return rows
