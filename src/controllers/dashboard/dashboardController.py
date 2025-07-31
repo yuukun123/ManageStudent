@@ -533,12 +533,7 @@ class dashboardController(QObject):
             return
 
         for semester in all_semesters:
-            # display_text = f"{semester['start_semester']} - {semester['end_semester']}"
-            # Quan trọng: Hiển thị text dễ đọc, nhưng lưu trữ ID để dùng cho truy vấn
-            # self.filterSemester.addItem(display_text, userData=semester['semester_id'])
             self.filterSemester.addItem(semester['semester_name'], userData=semester['semester_id'])
-
-    # trong dashboardController.py
 
     # SỬA LẠI HÀM NÀY
     def _populate_subject_filter(self):

@@ -25,14 +25,28 @@ class buttonController:
         self.view.showMinimized()
         self.view.setWindowOpacity(1.0)
 
+    # trong buttonController.py
+
     def toggle_maximize_restore(self):
+        # self.view ở đây là MainWindow
         if self.view.isMaximized():
-            self.view.showNormal()                # Thu nhỏ về kích thước ban đầu
-            self.view.maximizeBtn.show()          # Hiện nút maximize
-            self.view.restoreBtn.hide()           # Ẩn nút restore
+            self.view.showNormal()
+            self.view.maximizeBtn.show()
+            self.view.restoreBtn.hide()
+
+            # --- THÔNG BÁO CHO HỆ THỐNG MINI-SIZE ---
+            # Khi khôi phục từ maximized, ta coi như nó không còn ở mini-size nữa
+            if self.view.is_mini_size:
+                self.view.is_mini_size = False
+                self.view.size_state_changed.emit(False)  # Phát tín hiệu
+
         else:
-            self.view.showMaximized()             # Phóng to full màn hình
-            self.view.maximizeBtn.hide()          # Ẩn nút maximize
-            self.view.restoreBtn.show()           # Hiện nút restore
+            # Trước khi phóng to, đảm bảo nó không ở trạng thái mini
+            if self.view.is_mini_size:
+                self.view.toggle_mini_restore()  # Quay về kích thước thường trước
+
+            self.view.showMaximized()
+            self.view.maximizeBtn.hide()
+            self.view.restoreBtn.show()
 
 

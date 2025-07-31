@@ -1,9 +1,14 @@
 from PyQt5 import uic
+from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
+
 from src.controllers.buttonController import buttonController
 from src.controllers.dashboard.dashboardController import dashboardController
 from src.controllers.student.studentListController import StudentListController
 from src.controllers.student.studentScoreController import StudentScoreController
+from src.controllers.classroom.classroomController import ClassroomController
+
 from src.models.user_model import get_user_by_username, get_teacher_context
 from src.utils.changeTab import MenuNavigator
 from src.views.moveable_window import MoveableWindow
@@ -16,6 +21,18 @@ class MainWindow(QMainWindow, MoveableWindow):
         super().__init__()
         uic.loadUi("../UI/forms/mainWindowApp.ui", self)
         MoveableWindow.__init__(self)
+
+        self.setResizeOnDrag(True, mini_size=QSize(1434, 854))
+
+        # Giả sử bạn có một nút riêng cho việc toggle mini-size tên là `miniSizeBtn`
+        # Nếu không có nút riêng, bạn có thể bỏ qua dòng này và chỉ dùng double-click
+        # self.miniSizeBtn.clicked.connect(self.toggle_mini_restore)
+
+        # Kết nối tín hiệu từ MoveableWindow để cập nhật UI của nút
+        self.size_state_changed.connect(self._update_mini_restore_button_ui)
+
+        # 4. CẬP NHẬT GIAO DIỆN NÚT BẤM LẦN ĐẦU
+        self._update_mini_restore_button_ui()
 
         # THÊM CÁC DÒNG NÀY ĐỂ QUẢN LÝ NGƯỜI DÙNG
         self.current_username = username
@@ -43,6 +60,12 @@ class MainWindow(QMainWindow, MoveableWindow):
 
         self.dashboardController = dashboardController(parent=self)
 
+        self.classroomController = ClassroomController(
+            self.area2,
+            parent=self,
+            # classroom_page = self.Classroom_page
+        )
+
         self.studentListController = StudentListController(
             self.studentList,
             parent=self,
@@ -64,7 +87,18 @@ class MainWindow(QMainWindow, MoveableWindow):
         if self.stackedWidget.currentWidget() == self.Dashboard_page:
             self.on_tab_changed(self.stackedWidget.currentIndex())
 
+        self.disable_unfinished_features()
         self.on_tab_changed(self.stackedWidget.currentIndex())
+
+    def mouseDoubleClickEvent(self, event):
+        """
+        Bắt sự kiện double-click để toggle mini-size và maximize.
+        """
+        if event.button() == Qt.LeftButton:
+            # Double-click vào thanh tiêu đề (ví dụ: vùng y < 50)
+            if event.y() < 50:
+                # Ưu tiên hành động maximize/restore trước
+                self.buttonController.toggle_maximize_restore()
 
     # THÊM HÀM MỚI NÀY
     def _load_user_context(self):
@@ -138,13 +172,13 @@ class MainWindow(QMainWindow, MoveableWindow):
             if not self.studentScoreController._initialized_for_user:
                 self.studentScoreController.setup_for_user(self.teacher_context)
 
-        # elif current_widget == self.Classroom_page:
-        #     # Đặt lại tiêu đề
-        #     new_title = "Classroom Management"  # Hoặc "Quản lý Lớp"
-        #
-        #     print("📝 Đã chuyển đến trang Classroom")
-        #     if not self.classroomController._initialized_for_user:
-        #         self.studentScoreController.setup_for_user(self.teacher_context)
+        elif current_widget == self.Classroom_page:
+            # Đặt lại tiêu đề
+            new_title = "Classroom Management"  # Hoặc "Quản lý Lớp"
+
+            print("📝 Đã chuyển đến trang Classroom")
+            if not self.classroomController._initialized_for_user:
+                self.classroomController.setup_for_user(self.teacher_context)
         #
         # elif current_widget == self.Subject_page:
         #     # Đặt lại tiêu đề
@@ -163,5 +197,73 @@ class MainWindow(QMainWindow, MoveableWindow):
         #         self.notificationController.setup_for_user(self.teacher_context)
 
         self.header_DBD.setText(new_title)
+
+    def disable_unfinished_features(self):
+        """Vô hiệu hóa các nút menu cho các tính năng chưa hoàn thiện."""
+
+        # 1. Vô hiệu hóa nút
+        self.notification.setEnabled(False)  # Giả sử objectName của nút là 'notification'
+        self.subject.setEnabled(False)  # Giả sử objectName của nút là 'subject'
+
+        # 2. (Tùy chọn) Thêm Tooltip để giải thích cho người dùng
+        self.notification.setToolTip("Tính năng đang được phát triển")
+        self.subject.setToolTip("Tính năng đang được phát triển")
+
+        # 3. (Tùy chọn) Thay đổi style để trông "bị vô hiệu hóa" rõ hơn
+        disabled_style = "background-color: #d3d3d3; color: #888888; border-radius: 6px;"
+        self.notification.setStyleSheet(disabled_style)
+        self.subject.setStyleSheet(disabled_style)
+
+    def toggle_mini_restore(self):
+        """
+        Chuyển đổi giữa kích thước mini và kích thước ban đầu.
+        Được gọi bởi nút bấm hoặc double-click.
+        """
+        # Bỏ qua nếu đang ở trạng thái phóng to tối đa
+        if self.isMaximized():
+            return
+
+        if not self.resize_on_drag_enabled:
+            return
+
+        if self.is_mini_size:
+            # Nếu đang là mini, quay về hình dạng ban đầu
+            if self._original_geometry:
+                self.setGeometry(self._original_geometry)
+            self.is_mini_size = False
+        else:
+            # Nếu đang là kích thước thường, lưu hình dạng và chuyển sang mini
+            self._original_geometry = self.geometry()
+            current_center = self._original_geometry.center()
+
+            self.resize(self.mini_size)
+
+            new_geo = self.frameGeometry()
+            new_geo.moveCenter(current_center)
+            self.move(new_geo.topLeft())
+
+            self.is_mini_size = True
+
+        # Sau khi thay đổi trạng thái, cập nhật lại UI của nút
+        self._update_mini_restore_button_ui()
+
+    def _update_mini_restore_button_ui(self):
+        """Cập nhật icon và tooltip cho nút toggle."""
+        if self.is_mini_size:
+            # Đang mini -> Nút phải có chức năng "khôi phục"
+            # Giả sử bạn có 2 nút riêng biệt giống như maximize/restore
+            # self.maximizeBtn.hide()
+            # self.restoreBtn.show()
+
+            # Hoặc nếu chỉ có 1 nút, đổi icon của nó
+            self.restoreBtn.setIcon(QIcon("../UI/icons/copy.svg"))
+            # self.restoreBtn.setToolTip("Khôi phục kích thước")
+        else:
+            # Đang bình thường -> Nút phải có chức năng "thu nhỏ"
+            self.maximizeBtn.show()
+            self.restoreBtn.hide()
+
+            self.restoreBtn.setIcon(QIcon("../UI/icons/copy.svg"))
+            # self.restoreBtn.setToolTip("Thu nhỏ")
 
 

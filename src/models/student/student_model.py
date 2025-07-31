@@ -805,3 +805,118 @@ def get_avg_scores_by_class(teacher_id, academic_year_id, semester_id):
     rows = [dict(row) for row in cursor.fetchall()]
     conn.close()
     return rows
+
+#
+
+# Thêm hàm này vào file student_model.py
+
+def get_classroom_kpis(teacher_id, academic_year_id, semester_id):
+    """
+    Tính toán các chỉ số KPI tổng quan (tổng số lớp, tổng số SV, tỉ lệ qua môn)
+    cho một giảng viên trong một học kỳ cụ thể.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    query = """
+        WITH AssignedClasses AS (
+            -- Lấy danh sách các lớp và môn học được phân công
+            SELECT DISTINCT
+                ta.class_id,
+                cs.class_subject_id
+            FROM teacher_assignments ta
+            JOIN class_subjects cs ON ta.class_id = cs.class_id 
+                                   AND ta.subject_id = cs.subject_id 
+                                   AND ta.semester_id = cs.semester_id
+            WHERE ta.teacher_id = ? AND ta.academic_year_id = ? AND ta.semester_id = ?
+        ),
+        StudentScores AS (
+            -- Lấy điểm của tất cả sinh viên trong các lớp được phân công
+            SELECT
+                s.student_id,
+                sc.final_score
+            FROM AssignedClasses ac
+            JOIN students s ON s.class_id = ac.class_id
+            LEFT JOIN scores sc ON s.student_id = sc.student_id 
+                               AND sc.class_subject_id = ac.class_subject_id
+                               AND sc.year = (SELECT start_year FROM academic_years WHERE academic_year_id = ?)
+        )
+        -- Tính toán các chỉ số cuối cùng
+        SELECT
+            (SELECT COUNT(*) FROM AssignedClasses) AS total_classes,
+            COUNT(DISTINCT StudentScores.student_id) AS total_students,
+            AVG(StudentScores.final_score) AS avg_score,
+            CAST(SUM(CASE WHEN StudentScores.final_score >= 5.0 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(StudentScores.final_score) AS pass_rate
+        FROM StudentScores;
+    """
+
+    # academic_year_id được dùng 2 lần trong truy vấn
+    params = (teacher_id, academic_year_id, semester_id, academic_year_id)
+
+    try:
+        cursor.execute(query, params)
+        result = cursor.fetchone()
+        return dict(result) if result else None
+    except sqlite3.Error as e:
+        print(f"Database error in get_classroom_kpis: {e}")
+        return None
+    finally:
+        conn.close()
+
+
+# Thêm hàm này vào file student_model.py
+
+def get_class_summary_stats(teacher_id, academic_year_id, semester_id):
+    """
+    Lấy dữ liệu thống kê tổng hợp cho mỗi lớp học phần mà một giáo viên dạy.
+    Bao gồm sĩ số, điểm TB, tỉ lệ qua môn, số SV giỏi/rớt.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    query = """
+        SELECT
+            c.class_name || ' - ' || s.subject_name AS section_name, -- Tạo tên lớp học phần đầy đủ
+            cs.class_subject_id,
+            COUNT(st.student_id) AS student_count,
+            AVG(sc.process_score) AS avg_process_score,
+            AVG(sc.final_score) AS avg_final_score,
+            CAST(SUM(CASE WHEN sc.final_score >= 5.0 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(sc.final_score) AS pass_rate,
+            SUM(CASE WHEN sc.final_score >= 8.5 THEN 1 ELSE 0 END) AS excellent_students,
+            SUM(CASE WHEN sc.final_score < 4.0 THEN 1 ELSE 0 END) AS failed_students
+        FROM
+            teacher_assignments ta
+        JOIN classes c ON ta.class_id = c.class_id
+        JOIN subjects s ON ta.subject_id = s.subject_id
+        -- Dùng LEFT JOIN để đảm bảo lớp vẫn hiện ra dù chưa có sinh viên
+        LEFT JOIN students st ON ta.class_id = st.class_id
+        -- Dùng LEFT JOIN scores để xử lý trường hợp chưa có điểm
+        LEFT JOIN class_subjects cs ON ta.class_id = cs.class_id 
+                                   AND ta.subject_id = cs.subject_id 
+                                   AND ta.semester_id = cs.semester_id
+        LEFT JOIN scores sc ON st.student_id = sc.student_id 
+                           AND cs.class_subject_id = sc.class_subject_id
+                           AND sc.year = (SELECT start_year FROM academic_years WHERE academic_year_id = ta.academic_year_id)
+        WHERE
+            ta.teacher_id = ?
+            AND ta.academic_year_id = ?
+            AND ta.semester_id = ?
+        GROUP BY
+            ta.class_id, ta.subject_id, -- Nhóm theo từng lớp học phần cụ thể
+            cs.class_subject_id, section_name
+        ORDER BY
+            section_name;
+    """
+    params = (teacher_id, academic_year_id, semester_id)
+
+    try:
+        cursor.execute(query, params)
+        rows = [dict(row) for row in cursor.fetchall()]
+        return rows
+    except sqlite3.Error as e:
+        print(f"Database error in get_class_summary_stats: {e}")
+        return []
+    finally:
+        conn.close()
