@@ -932,7 +932,7 @@ font-size:9px;
              <bool>false</bool>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>2</number>
             </property>
             <property name="iohio]" stdset="0">
              <string/>
@@ -5641,6 +5641,9 @@ border-radius: 0px;</string>
                        <string notr="true">border:none;</string>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_13">
+                       <property name="topMargin">
+                        <number>11</number>
+                       </property>
                        <item>
                         <widget class="QWidget" name="widget_15" native="true">
                          <property name="minimumSize">
@@ -9712,7 +9715,7 @@ background-color: rgb(227, 227, 227)
                      <number>15</number>
                     </property>
                     <property name="topMargin">
-                     <number>5</number>
+                     <number>11</number>
                     </property>
                     <property name="bottomMargin">
                      <number>5</number>
@@ -9727,7 +9730,7 @@ background-color: rgb(227, 227, 227)
                         <number>0</number>
                        </property>
                        <property name="topMargin">
-                        <number>0</number>
+                        <number>5</number>
                        </property>
                        <property name="rightMargin">
                         <number>0</number>
@@ -9893,9 +9896,9 @@ QScrollBar::handle:horizontal {
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>-41</y>
+                      <y>0</y>
                       <width>1215</width>
-                      <height>861</height>
+                      <height>850</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -9934,6 +9937,9 @@ background-color: rgb(255, 255, 255);</string>
                          <number>0</number>
                         </property>
                         <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
                          <number>0</number>
                         </property>
                         <item>
@@ -10208,8 +10214,7 @@ QScrollBar::handle:horizontal {
 }
 
 #area2{
-	border-bottom: 1px solid rgb(153, 153, 153);
-	border-top: 1px solid rgb(153, 153, 153);
+
 	border-right: 1px solid rgb(153, 153, 153); 
 }
 </string>
@@ -10228,8 +10233,9 @@ QScrollBar::handle:horizontal {
                            </size>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">
-border-right: 1px solid rgb(153, 153, 153); </string>
+                           <string notr="true">	border-bottom: 1px solid rgb(153, 153, 153);
+	border-top: 1px solid rgb(153, 153, 153);
+	border-right: 1px solid rgb(153, 153, 153); </string>
                           </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>

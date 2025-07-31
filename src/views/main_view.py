@@ -1,7 +1,7 @@
 from PyQt5 import uic
 from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QWidget
 
 from src.controllers.buttonController import buttonController
 from src.controllers.dashboard.dashboardController import dashboardController
@@ -24,10 +24,6 @@ class MainWindow(QMainWindow, MoveableWindow):
 
         self.setResizeOnDrag(True, mini_size=QSize(1434, 854))
 
-        # Giả sử bạn có một nút riêng cho việc toggle mini-size tên là `miniSizeBtn`
-        # Nếu không có nút riêng, bạn có thể bỏ qua dòng này và chỉ dùng double-click
-        # self.miniSizeBtn.clicked.connect(self.toggle_mini_restore)
-
         # Kết nối tín hiệu từ MoveableWindow để cập nhật UI của nút
         self.size_state_changed.connect(self._update_mini_restore_button_ui)
 
@@ -39,6 +35,11 @@ class MainWindow(QMainWindow, MoveableWindow):
         self.teacher_context = None
         self._load_user_context()  # Tải context ngay khi khởi tạo
         # -------------------
+
+        # self.header_4 = QWidget()
+        # self.header_4.setObjectName("header_4")
+        # self.verticalLayout_2.addWidget(self.header_4)
+        self.header_4.hide()
 
         set_user_info(self.userInfoLabel, username)
         self.invisible()
@@ -179,22 +180,6 @@ class MainWindow(QMainWindow, MoveableWindow):
             print("📝 Đã chuyển đến trang Classroom")
             if not self.classroomController._initialized_for_user:
                 self.classroomController.setup_for_user(self.teacher_context)
-        #
-        # elif current_widget == self.Subject_page:
-        #     # Đặt lại tiêu đề
-        #     new_title = "Subject Management"  # Hoặc "Quản lý Môn học"
-        #
-        #     print("📝 Đã chuyển đến trang Subject")
-        #     if not self.subjectController._initialized_for_user:
-        #         self.subjectController.setup_for_user(self.teacher_context)
-        #
-        # elif current_widget == self.Notification_page:
-        #     # Đặt lại tiêu đề
-        #     new_title = "Notification Management"  # Hoặc "Quản lý Thống báo"
-        #
-        #     print("📝 Đã chuyển đến trang Notification")
-        #     if not self.notificationController._initialized_for_user:
-        #         self.notificationController.setup_for_user(self.teacher_context)
 
         self.header_DBD.setText(new_title)
 
@@ -250,20 +235,17 @@ class MainWindow(QMainWindow, MoveableWindow):
     def _update_mini_restore_button_ui(self):
         """Cập nhật icon và tooltip cho nút toggle."""
         if self.is_mini_size:
-            # Đang mini -> Nút phải có chức năng "khôi phục"
             # Giả sử bạn có 2 nút riêng biệt giống như maximize/restore
             # self.maximizeBtn.hide()
             # self.restoreBtn.show()
 
-            # Hoặc nếu chỉ có 1 nút, đổi icon của nó
             self.restoreBtn.setIcon(QIcon("../UI/icons/copy.svg"))
-            # self.restoreBtn.setToolTip("Khôi phục kích thước")
         else:
             # Đang bình thường -> Nút phải có chức năng "thu nhỏ"
-            self.maximizeBtn.show()
-            self.restoreBtn.hide()
+            # self.maximizeBtn.show()
+            # self.restoreBtn.hide()
 
             self.restoreBtn.setIcon(QIcon("../UI/icons/copy.svg"))
-            # self.restoreBtn.setToolTip("Thu nhỏ")
+
 
 
