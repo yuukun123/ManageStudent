@@ -62,8 +62,9 @@ Follow these steps to get a local copy up and running.
     ```
 
 ### Running the Application
+
 Once the installation is complete, run the `main.py` script to start the application:
-'''bash
+```bash
 python main.py
 
 #### Alternatively, you can open the project in your favorite IDE (like VSCode or PyCharm) and run the main.py file directly.
