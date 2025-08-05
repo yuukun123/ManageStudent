@@ -182,9 +182,3 @@ class StudentForm(QDialog, MoveableWindow):
     def show_error(self, message):
         from PyQt5.QtWidgets import QMessageBox
         QMessageBox.warning(self, "Lỗi", message)
-
-
-
-
-
-
