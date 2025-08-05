@@ -73,3 +73,6 @@ python main.py
 # Acknowledgments
 ##### This project was developed with the assistance and guidance of Large Language Models, including OpenAI's ChatGPT and Google's Gemini.
 
+# Contact with me 
+##### Email: shimi6625@gmail.com
+##### LinkIn: https://www.linkedin.com/in/tony-phong-633949378/?trk=public_profile-settings_edit-profile-content&originalSubdomain=vn
