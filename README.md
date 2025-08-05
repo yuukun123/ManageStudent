@@ -1,17 +1,58 @@
-# ManageStudent
+ManageStudent - Student Score Management System
+A desktop application built with Python and PyQt5, designed to assist lecturers in managing student information, tracking scores, and viewing academic statistics for their assigned classes.
+![alt text](https://img.shields.io/badge/Python-3.10+-blue.svg)
 
-# Hi, I'm Yuu
-
-### I'm a student of Sài Gòn University
-
-##### This is my first project in Python, using PyQT with SQLite database and running on Python 3.10. I completed this project with the help of ChatGPT and Gemini. This is my first time using GUI and creating a small project to support lecturers to view information about the assigned class and enter midterm, final and final grade columns on a 10-point scale, it may not be the same as the real thing because I have refined some functions and some other functions are still not done.
-
-##### How to install the dependencies of the project 
-###### Run this command in the terminal
-```
+![alt text](https://img.shields.io/badge/License-MIT-yellow.svg)
+About The Project
+This is a personal project developed to explore and apply GUI programming with Python. It simulates a compact tool for university lecturers, aiming to simplify student management and the grading process.
+The project uses PyQt5 for the user interface and SQLite for local data storage, ensuring portability and eliminating the need for complex database setups.
+Key Features
+✅ Secure Login: Each lecturer has a dedicated account to access the system.
+👨‍🎓 Student List Management:
+View lists of students from assigned classes.
+Search and sort students by name or ID.
+📝 Score Entry and Updates:
+Easily enter or edit midterm, final, and overall scores (on a 10-point scale).
+The system automatically calculates the final grade based on subject weights.
+📊 Statistics and Data Visualization:
+Score Analysis: View score distribution charts (histogram, box plot) for a class or subject.
+Pass/Fail Ratio: Automatically calculate and display pie charts showing the pass/fail rates for a specific class.
+Cross-Class Comparison: Analyze average scores to compare academic performance across different classes taught by the lecturer.
+🗂️ Flexible Data Filtering: Filter students and view statistics by academic year and semester.
+Tech Stack
+Language: Python 3.10
+GUI Framework: PyQt5
+Database: SQLite
+Tools: Qt Designer, pyuic5, pyrcc5
+Getting Started
+Follow these steps to get a local copy up and running.
+Prerequisites
+Python 3.10 or higher installed.
+pip package manager (usually comes with Python).
+Installation
+Clone the repository:
+Generated bash
+git clone https://github.com/your-username/ManageStudent.git
+Use code with caution.
+Bash
+(Replace your-username with your actual GitHub username)
+Navigate to the project directory:
+Generated bash
+cd ManageStudent
+Use code with caution.
+Bash
+Install the required dependencies:
+Run the following command in your terminal to install all necessary packages from the requirements.txt file.
+Generated bash
 pip install -r requirements.txt
-```
-##### How to run the project
-```
-python main.py or open project go to src folder and run main.py
-```
+Use code with caution.
+Bash
+Running the Application
+Once the installation is complete, run the main.py script to start the application:
+Generated bash
+python main.py
+Use code with caution.
+Bash
+Alternatively, you can open the project in your favorite IDE (like VSCode or PyCharm) and run the main.py file directly.
+Acknowledgments
+This project was developed with the assistance and guidance of Large Language Models, including OpenAI's ChatGPT and Google's Gemini.
