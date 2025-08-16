@@ -3,7 +3,6 @@
 A desktop application built with Python and PyQt5, designed to assist lecturers in managing student information, tracking scores, and viewing academic statistics for their assigned classes.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## About The Project
 
